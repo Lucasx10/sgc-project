@@ -1,5 +1,3 @@
-/* #3F558F, #01C1F0, #FC6284, #1C3470, #D5E7FD, #00ADE9*/
-
 * {
   padding: 0;
   border: 0;
@@ -7,87 +5,59 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: space-between;
   margin: 0;
   font-family: "M PLUS 1", sans-serif;
   color: #494f50;
   font-size: 16px;
+  padding: 0px 0px;
   background: #f5f7f8;
   --bg-login: #fff;
   --bg-input: #f5f7f880;
   --border: #dfdfdf;
 }
 
-/* ---------------------------- HEADER ----------------------------------- */
-.header {
+/* -------------------------------- HEADER */
+header {
   display: flex;
-  width: 100%;
-  height: 110px;
-  /* overflow: hidden; */
-  background-color: #f1f1f1;
-  padding: 20px 10px;
   justify-content: space-between;
   align-items: center;
+  background-color: #f1f1f1;
+  color: #fff;
+  /* padding: 20px; */
 }
 
-/* Style the header links */
-.header a {
-  /* float: left; */
+header a {
   color: black;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
+  padding: 10px 15px;
 }
 
-/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-.header a.logo {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-/* Change the background color on mouse-over */
-.header a {
-  padding: 10px;
-}
-
-.header a:hover {
+header a:hover {
   background-color: #ddd;
   color: black;
 }
 
-/* Style the active/current link*/
-.header a.active {
+header a.active {
   background-color: #00ade9;
   color: white;
 }
 
-/* Float the link section to the right */
-.header-right {
+header a.logo {
+  height: 100%;
+}
+
+header .right {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   padding: 10px 30px;
   align-items: center;
   height: 100%;
 }
 
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
-}
-
-/* ---------------------------- CONTENT ----------------------------------- */
 button {
   border: 0;
   cursor: pointer;
@@ -99,18 +69,6 @@ button {
 
 a {
   color: inherit;
-}
-a:link {
-  text-decoration: none;
-}
-a:visited {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-a:active {
-  text-decoration: none;
 }
 
 input {
@@ -127,6 +85,7 @@ input::placeholder {
 
 h1 {
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .login {
@@ -228,7 +187,7 @@ input:focus {
 .submit {
   width: 100%;
   padding: 15px 10px;
-  background: #00ade9;
+  background: #0c813f;
   color: white;
   border-radius: 4px;
   margin-top: 20px;
@@ -237,7 +196,11 @@ input:focus {
 }
 
 .submit:hover {
-  background: #00ade9;
+  background: #259758;
+}
+
+.darkmode .forgot {
+  color: #237d91;
 }
 
 .forgot {
@@ -258,10 +221,19 @@ input:focus {
   margin-top: 5px;
 }
 
-/* -------------------------- New */
+.lightdarkmode {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 30px;
+  background: transparent;
+  color: #21a15b;
+}
+
+/* -------------------------- CONTENT --------  */
+
 .content {
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
   height: 100%;
 }
@@ -403,8 +375,6 @@ input:focus {
 .card-content-curso-word {
   font-weight: bold;
 }
-.card-content-curso-des {
-}
 
 .card-footer-curso {
   padding: 0.75rem;
@@ -435,21 +405,8 @@ input:focus {
   border-radius: 0.5rem;
 }
 
-/* ---------------------------- FOOTER ----------------------------------- */
-
-.footer-dark {
-  padding: 5px 0;
-  color: #f0f9ff;
-  background-color: #3f558f;
-}
-
-.footer-dark .copyright {
+/* ----------------------  FOOTER */
+footer {
   text-align: center;
-  opacity: 0.6;
-  font-size: 13px;
-  margin-bottom: 0;
-}
-
-.footer-dark a:hover {
-  color: #ccc;
+  margin-top: 30px;
 }

@@ -3,9 +3,18 @@ import express from "express";
 import routes from "./routes/index.js";
 import sequelize from "./config/sequelize.js";
 import cors from "cors";
+import path from "path";
+import fileDirName from './config/file-dir-name.js';
+const { __dirname, __filename } = fileDirName(import.meta);
 
 const app = express();
 const PORT = 3000;
+
+// Definindo dir root project global
+global.__basedir = __dirname;
+
+// Definindo static folder
+app.use(express.static(path.join(__dirname, "/frontend/public")));
 
 // MIDDLEWARE
 app.use(cors());

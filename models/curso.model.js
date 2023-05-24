@@ -2,13 +2,22 @@ const curso = (sequelize, DataTypes) => {
   const Curso = sequelize.define(
     "Curso",
     {
-      nome: {
+      name: {
         type: DataTypes.STRING,
       },
-      ch: {
-        type: DataTypes.INTEGER,
+      image: {
+        type: DataTypes.STRING,
       },
-      categoria: {
+      category: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.STRING,
+      },
+      tags: {
+        type: DataTypes.JSON,
+      },
+      date_start: {
         type: DataTypes.STRING,
       },
     },

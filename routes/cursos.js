@@ -15,11 +15,7 @@ router.post(
   "/create",
   [
     //validação dos dados
-    body("nome").notEmpty().trim().withMessage("O campo nome é obrigatório"),
-    body("ch")
-      .isNumeric()
-      .isLength({ min: 2 })
-      .withMessage("O campo ch deve ser numérico apenas"),
+    body("name").notEmpty().trim().withMessage("O campo nome é obrigatório"),
   ],
   async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
@@ -29,10 +25,24 @@ router.post(
     }
 
     //se os dados forem válidos, o sistema executará aqui
-    const { nome, ch, categoria } = req.body;
-    await cursoController.adicionar({ nome, ch, categoria });
+    const { name, image, category, description, tags, date_start } = req.body;
+    await cursoController.adicionar({
+      name,
+      image,
+      category,
+      description,
+      tags,
+      date_start,
+    });
     res.status(201).send("Curso criado com sucesso!");
   }
 );
+
+router.get("/page/:id", async (req, res) => {
+  const { id } = req.params;
+  // console.log(id);
+  const curso = await cursoController.getCurso(id);
+  res.json(curso);
+});
 
 export default router;

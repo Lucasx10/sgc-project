@@ -5,7 +5,8 @@ import cursos from "./cursos.js";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("Pagina inicial");
+  // res.send("Pagina inicial");
+  res.sendFile(__basedir + "/frontend/src/index.html");
 });
 
 router.use("/users", users);

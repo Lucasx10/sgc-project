@@ -13,7 +13,7 @@
       content="validaçao, regex, usuario, login, cadastro"
     />
     <meta name="author" content="Acauan Ribeiro" />
-    <meta name="theme-color" content="#1C3470" />
+ 
     <title>SGC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,75 +21,34 @@
       href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../public/css/all.min.css" />
-    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
   <body>
     <!-- HEADER -->
-    <div class="header">
-      <a href="./index.html" class="logo"
-        ><img src="../public/images/logo.png" width="50%" alt="SGC logo"
-      /></a>
-      <div class="header-right">
-        <a class="active" href="./index.html"
+    <header>
+      <a href="/" class="logo"
+      ><img src="images/logo.png" alt="logo" width="50%"
+    /></a>
+      <div class="right">
+        <a class="active" href="/"
           ><i class="fa-solid fa-house"></i> Início</a
         >
         <a href="./login.html"
           ><i class="fa-solid fa-right-to-bracket"></i> Login</a
         >
       </div>
-    </div>
+    </header>
 
     <!-- CONTENT -->
 
-    <div class="container-curso">
-      <div class="card-curso">
-        <div class="card-image-curso">
-          <img
-            src="../public/images/cards/front-end.png"
-            width="100%"
-            alt="SGC logo"
-          />
-        </div>
-        <div class="card-content-curso">
-          <h2 class="card-title-curso">Curso Frontend Completo</h2>
-          <div>
-            <span class="card-content-curso-word">Descição: </span>
-            <span
-              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              mollitia, molestiae quas vel sint commodi. Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Maxime mollitia, molestiae quas
-              vel sint commodi.</span
-            >
-          </div>
-          <div>
-            <span class="card-content-curso-word">Data de Inicio: </span>
-            <span>13/08/2023</span>
-          </div>
-          <div>
-            <span class="card-content-curso-word">Tags: </span>
-            <span>#HTML #CSS</span>
-          </div>
-        </div>
-
-        <div class="card-footer-curso">
-          <button type="button" class="action-curso">Inscrever-se</button>
-        </div>
-      </div>
-    </div>
+    <div class="container-curso" id="inscrever"></div>
 
     <!-- FOOTER -->
     <div class="footer-dark">
-      <footer>
-        <div class="container">
-          <a href="https://github.com/acauanrr" target="_blank">
-            <p class="copyright">DCC603 - UFRR © 2023</p></a
-          >
-        </div>
-      </footer>
-    </div>
-    <script src="../public/js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <footer>DCC 603 - Banco de Dados II</footer>
+      <script src="/js/script.js"></script>
+      <script src="/js/get-cursos.js"></script>
   </body>
 </html>
