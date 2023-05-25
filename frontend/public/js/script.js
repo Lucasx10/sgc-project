@@ -96,12 +96,3 @@ function submitForm(event) {
 }
 
 submitBtn.addEventListener('click', submitForm)
-
-
-// lightmode e darkmode 
-
-function changeMode() {
-    document.body.classList.toggle('darkmode');
-}
-
-btnDarkmode.addEventListener('click', changeMode)

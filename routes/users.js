@@ -6,7 +6,7 @@ import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 const router = express.Router();
 const userController = new UserController(user);
 
-router.get("/", AuthMiddleware  , async (req, res) => {
+router.get("/login.html", AuthMiddleware  , async (req, res) => {
   console.log(req.user_id)
   const users = await userController.getAll();
   res.json(users);
