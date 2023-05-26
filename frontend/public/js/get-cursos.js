@@ -4,7 +4,6 @@ async function consultaCursos() {
   const response = await fetch("http://localhost:3000/cursos");
   const cursos = await response.json();
   preencheTela(cursos);
-  console.log(cursos);
 }
 
 function preencheTela(cursos) {
@@ -26,8 +25,9 @@ function preencheTela(cursos) {
     </div>
     <div class="card-footer">
       <p class="tag">${curso.tags}</p>
-      <a href="/pagina-curso.html"
-        ><button type="button" class="action">Inscrever-se</button></a
+      <a href="/pagina-curso/${curso.id}"
+        >
+        <button type="button" class="action">Inscrever-se</button></a
       >
     </div>
   </div>

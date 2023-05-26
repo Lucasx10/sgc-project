@@ -9,13 +9,14 @@ router.get("/", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/index.html");
 });
 
-router.get("/login.html", (req, res) => {
-  // res.send("Pagina inicial");
+router.get("/login", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/login.html");
 });
 
-router.get("/pagina-curso.html", (req, res) => {
+router.get("/pagina-curso/:id", (req, res) => {
   // res.send("Pagina inicial");
+  const { id } = req.params;
+  res.append("Set-Cookie", "cursoid=" + id); // setando o cookie
   res.sendFile(__basedir + "/frontend/src/pagina-curso.html");
 });
 
