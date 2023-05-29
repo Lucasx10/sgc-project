@@ -81,7 +81,6 @@ input.addEventListener('change', (event) => validateInput(event.target, index))
 )
 
 function submitForm(event) {
-
     inputsCriarConta.forEach((input,index) => validateInput(input, index));
 
     const arrayInputs = Array.from(inputsCriarConta)
@@ -92,7 +91,37 @@ function submitForm(event) {
 
     if (arrayInputs.some(isInvalid) || !termosInput.checked) {
         event.preventDefault()
+    }else{
+        event.preventDefault()
+        const name = document.getElementById('usuario').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('senha').value;
+
+        const dto = { 
+            name: name, 
+            email: email,
+            password: password
+        };
+
+        sendToAPI(dto)
     }
+    
+}
+
+async function sendToAPI(dto){
+    const respostaAPI = await fetch('http://localhost:3000/users/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dto)
+    })
+    .then(response =>{ 
+      response.json();})
+    .catch(error => {
+      console.error('Erro:', error);
+      
+    });
 }
 
 submitBtn.addEventListener('click', submitForm)
