@@ -6,10 +6,11 @@ import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 const router = express.Router();
 const userController = new UserController(user);
 
-router.get("/login.html", AuthMiddleware  , async (req, res) => {
+router.get("/login/:id", AuthMiddleware, async (req, res) => {
+  const { id } = req.params;
+  const user = await userController.getUser(id);
   console.log(req.user_id)
-  const users = await userController.getAll();
-  res.json(users);
+  res.json(user);
 });
 
 router.post("/create", async (req, res) => {

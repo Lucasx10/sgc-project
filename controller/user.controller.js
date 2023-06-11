@@ -12,6 +12,13 @@ export class UserController {
     return users;
   }
 
+  async getUser(id) {
+    let userFind = await this.user.findOne({
+      where: { id },
+    });
+    return userFind;
+  }
+
   async adicionar(userData) {
     let userExist = await this.user.findOne({
       where: { email: userData.email },

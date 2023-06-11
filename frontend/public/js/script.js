@@ -3,6 +3,7 @@ const allInputs = document.querySelectorAll('.ct-input input')
 const inputsCriarConta = document.querySelectorAll('#criar .ct-input input')
 const alertas = document.querySelectorAll('.alert')
 const submitBtn = document.querySelector('#submit-conta')
+const submitLogin = document.querySelector('#logado')
 const inputSenhaRpt = document.querySelector('#senharpt')
 const termosInput = document.querySelector('#termos')
 const btnDarkmode = document.querySelector('.lightdarkmode')
@@ -123,5 +124,12 @@ async function sendToAPI(dto){
       
     });
 }
+
+async function consultaUser(id) {
+    const response = await fetch(`http://localhost:3000/cursos/page/${id}`);
+    const curso = await response.json();
+    preencheTelaCurso(curso);
+    console.log(curso);
+  }
 
 submitBtn.addEventListener('click', submitForm)
