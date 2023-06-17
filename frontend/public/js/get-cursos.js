@@ -3,11 +3,18 @@ const divCursos = document.querySelector("#cursos");
 async function consultaCursos() {
   const response = await fetch("http://localhost:3000/cursos");
   const cursos = await response.json();
-  preencheTela(cursos);
+
+  const responseCategorias = await fetch("http://localhost:3000/categoria");
+  const categorias = await responseCategorias.json();
+
+  preencheTela(cursos, categorias);
 }
 
-function preencheTela(cursos) {
+function preencheTela(cursos, categorias) {
   cursos.forEach((curso) => {
+    // Encontra a categoria correspondente pelo ID
+    const categoria = categorias.find((categoria) => categoria.id === curso.categoriaId);
+
     const novoCursoHTML = `
     <div class="card">
     <div class="card-image" >
@@ -24,7 +31,7 @@ function preencheTela(cursos) {
       </p>
     </div>
     <div class="card-footer">
-      <p class="tag">${curso.categoriaId}</p>
+      <p class="Categoria">${categoria.name}</p>
       <a href="/pagina-curso/${curso.id}"
         >
         <button type="button" class="action">Inscrever-se</button></a
