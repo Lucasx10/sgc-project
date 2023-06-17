@@ -1,17 +1,24 @@
 const categoria = (sequelize, DataTypes) => {
-    const Categoria = sequelize.define(
-      "Categoria",
-      {
-        name: {
-          type: DataTypes.STRING,
-        },
+  const Categoria = sequelize.define(
+    "Categoria",
+    {
+      name: {
+        type: DataTypes.STRING,
       },
-      {
-        tableName: "categoria_curso",
-      }
-    );
-    return Categoria;
+    },
+    {
+      tableName: "categoria_curso",
+    }
+  );
+
+  Categoria.associate = (models) => {
+    Categoria.hasOne(models.Curso, {
+      foreignKey: "categoriaId",
+      as: "curso",
+    });
   };
-  
-  export default categoria;
-  
+
+  return Categoria;
+};
+
+export default categoria;

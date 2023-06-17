@@ -24,7 +24,7 @@ function preencheTela(cursos) {
       </p>
     </div>
     <div class="card-footer">
-      <p class="tag">${curso.tags}</p>
+      <p class="tag">${curso.categoriaId}</p>
       <a href="/pagina-curso/${curso.id}"
         >
         <button type="button" class="action">Inscrever-se</button></a
