@@ -14,7 +14,7 @@
     />
     <meta name="author" content="Lucas" />
     <meta name="theme-color" content="#0c813f" />
-    <title>Login</title>
+    <title>Curso</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,7 +33,7 @@
       /></a>
       <div class="right">
         <a href="/">Home</a>
-        <a href="/login" class="active">Curso</a>
+        <a href="/novo-curso" class="active">Curso</a>
       </div>
     </header>
     <!-- CONTENT -->
@@ -67,7 +67,7 @@
 
           <div class="description-field ct-input">
             <label for="description">Descrição</label>
-            <textarea id="description" name="description" rows="3" cols="50" 
+            <textarea id="description" name="description" rows="3" cols="50"
             placeholder="Curso ensinando sobre os conceitos fundamentais de robótica">
             </textarea>
           </div>
@@ -86,14 +86,32 @@
           <div class="select-field ct-input">
             <label for="selectCategorias">Categoria</label>
             <select id="selectCategorias"></select>
+            <button type="button" id="add-category">Adicionar Categoria</button>
           </div>
-
-         <button type="submit" class="submit" id="criar-curso" >Criar</button>
-
+          
+         <button type="submit" class="submit" id="criar-curso">Criar</button>
+        
         </form>
       </div>
     </section>
-
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Adicionar Categoria</h2>
+        <form>
+          <div class="name-field ct-input">
+            <label for="name">Nome da Categoria</label>
+            <input
+              type="name"
+              name="name"
+              id="nameCategoria"
+              placeholder="Ciência da Computação"
+            />
+          </div>
+          <button type="submit" class="submit" id="criar-categoria" class="close">Criar Categoria</button>
+        </form>
+      </div>
+    </div>
     <footer>By <a href="https://github.com/Lucasx10">Lucas</a></footer>
     <script src="/js/new-course.js"></script>
   </body>

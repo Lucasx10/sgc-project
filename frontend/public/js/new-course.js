@@ -1,4 +1,8 @@
 const submitBtn = document.getElementById('criar-curso')
+const submitBtnCategoria = document.getElementById('criar-categoria')
+const modal = document.getElementById('modal');
+const openModalButton = document.getElementById('add-category');
+const closeModalButton = document.getElementsByClassName('close')[0];
 
 fetch('http://localhost:3000/categoria')
   .then(response => response.json())
@@ -45,6 +49,7 @@ fetch('http://localhost:3000/categoria')
     }
 }
 
+
 function submitForm(event) {
         event.preventDefault()
         const image = document.getElementById('image').value;
@@ -82,5 +87,48 @@ async function sendToAPI(dto){
     });
 }
 
-submitBtn.addEventListener('click', submitForm)
+function submitFormCategoria(event) {
+  event.preventDefault();
+  const nomeDaCategoria = document.getElementById('nameCategoria').value;
 
+  const categoriaDto = {
+    name: nomeDaCategoria
+  };
+  
+  createCategoria(categoriaDto);
+}
+
+
+async function createCategoria(categoriaDto) {
+    try {
+      const response = await fetch('http://localhost:3000/categoria/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(categoriaDto)
+      });
+  
+      if (response.ok) {
+        modal.style.display = 'none'; // Fecha o modal
+        window.location.reload(); // Atualiza a página
+      } else {
+        // Lidar com erros de resposta da API, se necessário
+        console.error('Erro ao criar categoria:', response.status);
+      }
+    } catch (error) {
+      console.error('Erro ao criar categoria:', error);
+    }
+}
+
+openModalButton.onclick = function() {
+    modal.style.display = "block";
+};
+
+closeModalButton.onclick = function() {
+    modal.style.display = 'none'; // Fecha o modal
+};
+
+
+submitBtnCategoria.addEventListener('click', submitFormCategoria)
+submitBtn.addEventListener('click', submitForm)
