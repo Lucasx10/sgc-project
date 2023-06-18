@@ -3,7 +3,7 @@ const allInputs = document.querySelectorAll('.ct-input input')
 const inputsCriarConta = document.querySelectorAll('#criar .ct-input input')
 const alertas = document.querySelectorAll('.alert')
 const submitBtn = document.querySelector('#submit-conta')
-const submitLogin = document.querySelector('#logado')
+const submitBtnLogin = document.querySelector('#logado')
 const inputSenhaRpt = document.querySelector('#senharpt')
 const termosInput = document.querySelector('#termos')
 const btnDarkmode = document.querySelector('.lightdarkmode')
@@ -109,6 +109,76 @@ function submitForm(event) {
     
 }
 
+function submitLoginForm(event) {
+    event.preventDefault();
+  
+    const email = document.getElementById('usuario-entrar').value;
+    const password = document.getElementById('senha-entrar').value;
+  
+    const dto = {
+      email: email,
+      password: password
+    };
+    console.log(dto)
+    sendLoginRequest(dto);
+}
+
+async function sendLoginRequest(dto) {
+    const response = await fetch('http://localhost:3000/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dto)
+    });
+  
+    if (response.ok) {
+      // Autenticação bem-sucedida, redirecionar o usuário para a página de perfil
+      console.log('Autenticação bem-sucedida');
+      
+        // Extrair o token da resposta
+        const { token } = await response.json();
+  
+        // Armazenar o token no Local Storage
+        localStorage.setItem('token', token);
+
+        // Decodificar o token manualmente para obter o ID do usuário
+        const tokenParts = token.split('.');
+        const payloadBase64 = tokenParts[1];
+        const payload = atob(payloadBase64);
+        const { id } = JSON.parse(payload);
+  
+        // Chamar a função para obter os dados do usuário
+        getUserData(id);
+    } else {
+      // Autenticação falhou, exibir uma mensagem de erro ou executar outras ações
+      console.error('Falha na autenticação');
+    }
+}
+
+async function getUserData(id) {
+    const token = localStorage.getItem('token'); // Obtenha o token armazenado no Local Storage
+  
+    const response = await fetch(`http://localhost:3000/users/login/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}` // Inclua o token no cabeçalho da requisição
+      }
+    });
+  
+    if (response.ok) {
+      // Os dados do usuário estão na resposta
+      const userData = await response.json();
+      console.log(userData);
+      
+      // Use os dados do usuário para preencher a página ou executar outras ações necessárias
+      // ...
+    } else {
+      // Se a chamada falhar, pode ser necessário lidar com o erro adequadamente
+      console.error('Falha ao obter os dados do usuário');
+    }
+}
+  
+
 async function sendToAPI(dto){
     const respostaAPI = await fetch('http://localhost:3000/users/create', {
       method: 'POST',
@@ -118,7 +188,9 @@ async function sendToAPI(dto){
       body: JSON.stringify(dto)
     })
     .then(response =>{ 
-      response.json();})
+      response.json();
+      window.location.reload(); // Atualiza a página
+    })
     .catch(error => {
       console.error('Erro:', error);
       
@@ -130,6 +202,7 @@ async function consultaUser(id) {
     const curso = await response.json();
     preencheTelaCurso(curso);
     console.log(curso);
-  }
+}
 
+submitBtnLogin.addEventListener('click', submitLoginForm);
 submitBtn.addEventListener('click', submitForm)

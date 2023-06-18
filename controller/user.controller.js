@@ -70,6 +70,7 @@ export class UserController {
     return {
       error: false,
       user: {
+        id: userExist.id,
         name: userExist.name,
         email: userExist.email,
       },
