@@ -6,12 +6,23 @@ import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 const router = express.Router();
 const userController = new UserController(user);
 
+
+router.get("/", AuthMiddleware, async (req, res) => {
+  if (req.user_id == 1) { // Verifica se o usuário é o (root) pelo id do token
+    const users = await userController.getAll();
+    res.json(users);
+  } else {
+    res.status(403).json({ error: "Access denied" });
+  }
+});
+
 router.get("/login/:id", AuthMiddleware, async (req, res) => {
   const { id } = req.params;
   const user = await userController.getUser(id);
   console.log(req.user_id)
   res.json(user);
 });
+
 
 router.post("/create", async (req, res) => {
   const { name, email, password } = req.body;
