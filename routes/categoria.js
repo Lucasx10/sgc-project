@@ -35,4 +35,16 @@ router.get("/page/:id", async (req, res) => {
   res.json(categoria);
 });
 
+router.delete('/delete/:id', async (req, res) => {
+  try{
+    const id = req.params.id;
+    await categoriaController.deleteCategoria(id);
+    res.status(204).send(`Categoria com ID ${id} excluído com sucesso`);
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao remover categoria' });
+  }
+  
+});
+
 export default router;

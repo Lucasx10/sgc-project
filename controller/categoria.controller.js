@@ -23,5 +23,9 @@ export class CategoriaController {
         console.log(error);
       }
     }
+
+    async deleteCategoria(id) {
+      await this.categoria.destroy({ where: { id: id } });
+    }
   }
   
