@@ -18,6 +18,10 @@ router.get("/novo-curso", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/novo-curso.html");
 });
 
+router.get("/categorias", (req, res) => {
+  res.sendFile(__basedir + "/frontend/src/categorias.html");
+});
+
 router.get("/root", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/root.html");
 });

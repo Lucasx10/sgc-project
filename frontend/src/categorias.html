@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SGC - Sistema de Gerenciamento de Cursos"
+    />
+    <meta
+      name="keywords"
+      content="validaçao, regex, usuario, login, cadastro"
+    />
+    <meta name="author" content="Acauan Ribeiro" />
+
+    <title>SGC - Página Incial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <a href="/" class="logo"
+        ><img src="images/logo.png" alt="logo" width="50%"
+      /></a>
+      <div class="right">
+        <a href="/" class="active">Home</a>
+        <a href="/novo-curso">Curso</a>
+        <a href="/categorias">Categorias</a>
+        <a href="/login">Login</a>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main>
+      <div class="content">
+        <h2 style="margin: auto;">Gerenciar Categorias</h2>
+        <button type="button" class="btn btn-success" id="add-category" style="width: 15%; margin: auto;">Adicionar Categoria</button>
+        <table class="table mytable table-striped">
+            <thead>
+                <th scope="col" style="width: 90%;">Nome</th>
+                <th scope="col" style="width: 10%;">Ações</th>          
+            </thead>
+            <tbody id="table-body">
+
+            </tbody>
+        </table>
+        <div class="container-cursos" id="cursos"></div>
+      </div>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Adicionar Categoria</h2>
+          <form>
+            <div class="name-field ct-input">
+              <label for="name">Nome da Categoria</label>
+              <input
+                type="name"
+                name="name"
+                id="nameCategoria"
+                placeholder="Ciência da Computação"
+              />
+            </div>
+            <button type="submit" class="submit" id="criar-categoria" class="close">Criar Categoria</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="confirma-exclusao" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3> Tem certeza que deseja excluir esta categoria?</h3>
+          <form>
+            <div class="name-field ct-input">
+              <label for="name">Nome da Categoria</label>
+              <input
+                type="name"
+                name="name"
+                id="nameCategoria"
+                placeholder="Ciência da Computação"
+              />
+            </div>
+            <button type="submit" class="submit" id="criar-categoria" class="close">Criar Categoria</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>DCC 603 - Banco de Dados II</footer>
+    <script src="/js/search-category.js"></script>
+    <script src="https://kit.fontawesome.com/84d5797636.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -445,3 +445,13 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+.mytable{
+  width: 60%;
+  margin: 0 auto;
+}
+
+/* .add-category{
+  width: 30% !important;
+} */
