@@ -1,5 +1,4 @@
 const divTableBody = document.getElementById('table-body');
-
 const closeModalButton = document.getElementsByClassName('close')[0];
 const criarCategoria = document.getElementById('modal');
 const excluir = document.getElementById('excluir');
@@ -14,7 +13,12 @@ document.getElementById('add-category').addEventListener('click', function () {
 });
 
 function confirmarExclusao(id){
-    openModalComID('confirma-exclusao',id);
+    openModalComIdExcluir('confirma-exclusao',id);
+}
+
+async function alterar(categoriaId){
+    const categoria = await findCategoriaById(categoriaId)
+    openModalComIdAlterar('editar',categoria);
 }
 
 function openModal(modalId) {
@@ -22,7 +26,7 @@ function openModal(modalId) {
     modal.style.display = 'block';
 }
 
-function openModalComID(modalId, id) {
+function openModalComIdExcluir(modalId, id) {
     excluir.innerHTML = ""
     const modal = document.getElementById(modalId);
     const htmlModal = `
@@ -30,6 +34,18 @@ function openModalComID(modalId, id) {
     `
     excluir.innerHTML = excluir.innerHTML + htmlModal;
     modal.style.display = 'block';
+}
+
+function openModalComIdAlterar(modalId, categoria) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    const editNameInput = document.getElementById('alterandoName');
+    editNameInput.value = categoria.name;
+
+    submitBtnUpdateCategoria.addEventListener('click', () => {
+        submitEditCategoria(categoria.id);
+    });
+    
 }
   
   // Function to close the modal
@@ -48,6 +64,7 @@ function openModalComID(modalId, id) {
 
 
 const submitBtnCategoria = document.getElementById('criar-categoria')
+const submitBtnUpdateCategoria = document.getElementById('alterar-categoria')
 
 async function consultaCategorias() {
   const responseCategorias = await fetch("http://localhost:3000/categoria");
@@ -64,18 +81,59 @@ function createTable(categorias) {
         <tr>
             <td>${categoria.name}</td>
             <td>
-            <i style="color: green"  class="fa-solid fa-pen-to-square" style="padding-left: 15px"></i>
+            <i style="color: green"  onClick="alterar(${categoria.id})"  class="fa-solid fa-pen-to-square" style="padding-left: 15px"></i>
             <i style="color: red" onClick="confirmarExclusao(${categoria.id})" class="delete-category fa-solid fa-trash-can"></i>
             </td>
         </tr>
       `
-  
       divTableBody.innerHTML = divTableBody.innerHTML + novoLinhaHTML;
     });
 }
 
+
+async function createCategoria(categoriaDto) {
+    try {
+        const response = await fetch('http://localhost:3000/categoria/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(categoriaDto)
+        });
+        
+        if (response.ok) {
+            modal.style.display = 'none'; // Fecha o modal
+            window.location.reload(); // Atualiza a página
+        } else {
+            // Lidar com erros de resposta da API, se necessário
+            console.error('Erro ao criar categoria:', response.status);
+        }
+    } catch (error) {
+        console.error('Erro ao criar categoria:', error);
+    }
+}
+
+async function atualizarCategoria(id, categoriaDto) {
+    console.log("Fui chamado")
+     try {
+       const response = await fetch(`http://localhost:3000/categoria/update/${id}`, { method: 'PUT',
+       headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(categoriaDto)},
+       );
+       if (response.ok) {
+         modal.style.display = 'none';
+         location.reload()
+       } else {
+         console.error('Erro ao deletar item');
+       }
+     } catch (error) {
+       console.error('Erro ao fazer requisição', error);
+     }
+}
+
 async function deletarCategoria(id) {
-    console.log("fui chamado")
      try {
        const response = await fetch(`http://localhost:3000/categoria/delete/${id}`, { method: 'DELETE' });
        if (response.ok) {
@@ -88,6 +146,13 @@ async function deletarCategoria(id) {
      }
 }
 
+
+async function findCategoriaById(id) {
+    const categoriaObject = await fetch(`http://localhost:3000/categoria/${id}`);
+    const categoria = await categoriaObject.json();
+    return categoria;
+}
+
 function submitFormCategoria(event) {
     event.preventDefault();
     const nomeDaCategoria = document.getElementById('nameCategoria').value;
@@ -97,28 +162,20 @@ function submitFormCategoria(event) {
     };
     
     createCategoria(categoriaDto);
+
+    nomeDaCategoria.value = '';
 }
 
-async function createCategoria(categoriaDto) {
-    try {
-      const response = await fetch('http://localhost:3000/categoria/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(categoriaDto)
-      });
+function submitEditCategoria(categoriaId) {
+    event.preventDefault();
+    const nomeDaCategoria = document.getElementById('alterandoName').value;
   
-      if (response.ok) {
-        modal.style.display = 'none'; // Fecha o modal
-        window.location.reload(); // Atualiza a página
-      } else {
-        // Lidar com erros de resposta da API, se necessário
-        console.error('Erro ao criar categoria:', response.status);
-      }
-    } catch (error) {
-      console.error('Erro ao criar categoria:', error);
-    }
+    const categoriaDto = {
+      name: nomeDaCategoria
+    };
+    
+    atualizarCategoria(categoriaId, categoriaDto);
+
 }
 
 
