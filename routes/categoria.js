@@ -47,4 +47,11 @@ router.delete('/delete/:id', async (req, res) => {
   
 });
 
+router.put('/update/:id', async (req, res) => {
+  const id = req.params.id;
+  const { name } = req.body;
+  await categoriaController.updateCategoria(id,{name});
+  res.send(`Categoria com ID ${id} atualizado com sucesso`);
+});
+
 export default router;

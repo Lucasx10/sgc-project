@@ -27,5 +27,9 @@ export class CategoriaController {
     async deleteCategoria(id) {
       await this.categoria.destroy({ where: { id: id } });
     }
+
+    async updateCategoria(id, categoriaDTO) {
+      await this.categoria.update(categoriaDTO,{ where: { id: id } });
+    }
   }
   
