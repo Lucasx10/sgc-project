@@ -1,7 +1,51 @@
 const divTableBody = document.getElementById('table-body');
-const openModalButton = document.getElementById('add-category');
 
 const closeModalButton = document.getElementsByClassName('close')[0];
+const criarCategoria = document.getElementById('modal');
+const excluir = document.getElementById('excluir');
+
+
+closeModalButton.addEventListener('click', closeModal);
+consultaCategorias();
+
+
+document.getElementById('add-category').addEventListener('click', function () {
+    openModal('modal');
+});
+
+function confirmarExclusao(id){
+    openModalComID('confirma-exclusao',id);
+}
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+}
+
+function openModalComID(modalId, id) {
+    excluir.innerHTML = ""
+    const modal = document.getElementById(modalId);
+    const htmlModal = `
+    <button type="button" onClick=deletarCategoria(${id}) class="btn btn-danger">Excluir</button>
+    `
+    excluir.innerHTML = excluir.innerHTML + htmlModal;
+    modal.style.display = 'block';
+}
+  
+  // Function to close the modal
+  function closeModal() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach((modal) => {
+      modal.style.display = 'none';
+    });
+  }
+
+  const closeButton = document.querySelectorAll('.close');
+  closeButton.forEach((button) => {
+    button.addEventListener('click', closeModal);
+  });
+  
+
 
 const submitBtnCategoria = document.getElementById('criar-categoria')
 
@@ -21,7 +65,7 @@ function createTable(categorias) {
             <td>${categoria.name}</td>
             <td>
             <i style="color: green"  class="fa-solid fa-pen-to-square" style="padding-left: 15px"></i>
-            <i style="color: red" onclick="deletarCategoria(${categoria.id})" class="fa-solid fa-trash-can"></i>
+            <i style="color: red" onClick="confirmarExclusao(${categoria.id})" class="delete-category fa-solid fa-trash-can"></i>
             </td>
         </tr>
       `
@@ -77,14 +121,6 @@ async function createCategoria(categoriaDto) {
     }
 }
 
-openModalButton.onclick = function() {
-    modal.style.display = "block";
-};
 
-closeModalButton.onclick = function() {
-    modal.style.display = 'none';
-};
 
 submitBtnCategoria.addEventListener('click', submitFormCategoria)
-
-consultaCategorias();
