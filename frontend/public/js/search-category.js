@@ -70,7 +70,7 @@ async function consultaCategorias() {
   const responseCategorias = await fetch("http://localhost:3000/categoria");
   const categorias = await responseCategorias.json();
 
-  createTable   (categorias);
+  createTable (categorias);
 }
 
 
@@ -114,7 +114,6 @@ async function createCategoria(categoriaDto) {
 }
 
 async function atualizarCategoria(id, categoriaDto) {
-    console.log("Fui chamado")
      try {
        const response = await fetch(`http://localhost:3000/categoria/update/${id}`, { method: 'PUT',
        headers: {
@@ -126,7 +125,7 @@ async function atualizarCategoria(id, categoriaDto) {
          modal.style.display = 'none';
          location.reload()
        } else {
-         console.error('Erro ao deletar item');
+         console.error('Erro ao atualizar item');
        }
      } catch (error) {
        console.error('Erro ao fazer requisição', error);

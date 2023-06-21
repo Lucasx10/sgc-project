@@ -14,6 +14,14 @@ router.get("/login", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/login.html");
 });
 
+router.get("/cursos-management", (req, res) => {
+  res.sendFile(__basedir + "/frontend/src/cursos.html");
+});
+
+router.get("/cursos-edit", (req, res) => {
+  res.sendFile(__basedir + "/frontend/src/editar-curso.html");
+});
+
 router.get("/novo-curso", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/novo-curso.html");
 });
