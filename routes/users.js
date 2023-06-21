@@ -45,4 +45,18 @@ router.post("/login", async (req, res) => {
   res.status(200).json(resp);
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  // console.log(id);
+  const user = await userController.getUser(id);
+  res.json(user);
+});
+
+router.put('/update/:id', async (req, res) => {
+  const id = req.params.id;
+  const { name , endereco , image, email , password, whatsapp, isAtivo, isAdmin } = req.body;
+  await userController.updateUser(id,{ name , endereco , image, email , password, whatsapp, isAtivo, isAdmin });
+  res.send(`Usuário com ID ${id} atualizado com sucesso`);
+});
+
 export default router;

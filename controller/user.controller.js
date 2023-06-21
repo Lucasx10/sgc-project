@@ -79,4 +79,8 @@ export class UserController {
       }),
     };
   }
+
+  async updateUser(id, userDTO) {
+    await this.user.update(userDTO,{ where: { id: id } });
+  }
 }
