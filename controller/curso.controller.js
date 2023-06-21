@@ -23,4 +23,13 @@ export class CursoController {
       console.log(error);
     }
   }
+
+  async deleteCurso(id) {
+    await this.curso.destroy({ where: { id: id } });
+  }
+
+  async updateCurso(id, categoriaDTO) {
+    await this.curso.update(categoriaDTO,{ where: { id: id } });
+  }
+
 }

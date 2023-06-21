@@ -50,11 +50,30 @@ router.post(
   }
 );
 
-router.get("/page/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params;
   // console.log(id);
   const curso = await cursoController.getCurso(id);
   res.json(curso);
+});
+
+router.delete('/delete/:id', async (req, res) => {
+  try{
+    const id = req.params.id;
+    await cursoController.deleteCurso(id);
+    res.status(204).send(`Curso com ID ${id} excluído com sucesso`);
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao remover Curso' });
+  }
+  
+});
+
+router.put('/update/:id', async (req, res) => {
+  const id = req.params.id;
+  const { name, image, description,ch, date_start,categoriaId } = req.body;
+  await cursoController.updateCurso(id,{name, image, description,ch, date_start,categoriaId });
+  res.send(`Curso com ID ${id} atualizado com sucesso`);
 });
 
 export default router;
