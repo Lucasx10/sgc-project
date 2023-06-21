@@ -27,18 +27,80 @@ function preencheTela(users) {
         <p>
         ${user.email}
         </p>
+        <div class="${user.name}">
+            
         </div>
-        <div class="card-footer">
-        <p class="Categoria">${user.isAdmin}</p>
-            >
-            <button type="button" class="action">Tornar admin</button></a
-        >
         </div>
+        
     </div>
     </div>
     `;
     divCursos.innerHTML = divCursos.innerHTML + novoCursoHTML;
+    const button = document.querySelector(`.${user.name}`);
+    if(user.isAdmin){
+      const buttonElement = `
+      <button type="button" onclick="ativarDesativarAdmin(${user.id})" class="btn btn-danger">Remover admin</button></a>
+      `
+      button.innerHTML = button.innerHTML + buttonElement;
+     }else{
+      const buttonElement = `
+      <button type="button" onclick="ativarDesativarAdmin(${user.id})" class="btn btn-primary">Tornar admin</button></a>
+      `
+      button.innerHTML = button.innerHTML + buttonElement;
+    }
+
+    if(user.isAtivo){
+      const buttonElement = `
+      <button type="button" onclick="ativarDesativarUsuario(${user.id})" class=" btn btn-danger">Desativar usuario</button></a>
+      `
+      button.innerHTML = button.innerHTML + buttonElement;
+     }else{
+      const buttonElement = `
+      <button type="button" onclick="ativarDesativarUsuario(${user.id})" class="btn btn-primary ">Ativar usuario</button></a>
+      `
+      button.innerHTML = button.innerHTML + buttonElement;
+    }
   });
+}
+
+async function ativarDesativarAdmin(id) {
+  const user = await findUsuarioById(id);
+  const userDto = {
+    isAdmin: !user.isAdmin
+  };
+  atualizarUsuario(user.id, userDto)
+}
+
+async function ativarDesativarUsuario(id) {
+  const user = await findUsuarioById(id);
+  const userDto = {
+    isAtivo: !user.isAtivo
+  };
+  atualizarUsuario(user.id, userDto)
+}
+
+async function atualizarUsuario(id, usuarioDto) {
+  try {
+    const response = await fetch(`http://localhost:3000/users/update/${id}`, { method: 'PUT',
+    headers: {
+     'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(usuarioDto)},
+    );
+    if (response.ok) {
+      location.reload()
+    } else {
+      console.error('Erro ao atualizar item');
+    }
+  } catch (error) {
+    console.error('Erro ao fazer requisição', error);
+  }
+}
+
+async function findUsuarioById(id) {
+  const categoriaObject = await fetch(`http://localhost:3000/users/${id}`);
+  const categoria = await categoriaObject.json();
+  return categoria;
 }
 
 consultaUsers();
