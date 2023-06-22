@@ -47,6 +47,10 @@ router.get("/pagina-curso/:id", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/pagina-curso.html");
 });
 
+router.get("/settings", (req, res) => {
+  res.sendFile(__basedir + "/frontend/src/settings.html");
+});
+
 router.use("/users", users);
 router.use("/cursos", cursos);
 router.use("/categoria", categoria);
