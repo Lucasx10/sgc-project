@@ -96,7 +96,8 @@ async function createCategoria(categoriaDto) {
         const response = await fetch('http://localhost:3000/categoria/create', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(categoriaDto)
         });

@@ -13,7 +13,7 @@ async function consultaUsers() {
     preencheTela(users)
     // ...
   } else {
-    console.error('Falha ao obter os usuários');
+    console.error('Você não está autorizado');
   }
 }
 
@@ -37,7 +37,7 @@ function preencheTela(users) {
     `;
     divCursos.innerHTML = divCursos.innerHTML + novoCursoHTML;
     const button = document.querySelector(`.${user.name}`);
-    if(user.isAdmin){
+    if(user.role == 'admin'){
       const buttonElement = `
       <button type="button" onclick="ativarDesativarAdmin(${user.id})" class="btn btn-danger">Remover admin</button></a>
       `
@@ -65,9 +65,17 @@ function preencheTela(users) {
 
 async function ativarDesativarAdmin(id) {
   const user = await findUsuarioById(id);
-  const userDto = {
-    isAdmin: !user.isAdmin
-  };
+  let userDto = {}
+  if(user.role == 'admin'){
+    userDto = {
+      role: 'student'
+    };
+  }else{
+    userDto = {
+      role: 'admin'
+    };
+  }
+  
   atualizarUsuario(user.id, userDto)
 }
 
@@ -80,6 +88,7 @@ async function ativarDesativarUsuario(id) {
 }
 
 async function atualizarUsuario(id, usuarioDto) {
+  console.log(usuarioDto)
   try {
     const response = await fetch(`http://localhost:3000/users/update/${id}`, { method: 'PUT',
     headers: {
@@ -101,6 +110,20 @@ async function findUsuarioById(id) {
   const categoriaObject = await fetch(`http://localhost:3000/users/${id}`);
   const categoria = await categoriaObject.json();
   return categoria;
+}
+
+async function logout() {
+  try {
+    const response = await fetch("http://localhost:3000/users/logout");
+    if (response.ok) {
+      // Redirect the user to the login page or any other page
+      window.location.href = '/login';
+    } else {
+      console.error('Error during logout');
+    }
+  } catch (error) {
+    console.error('Error during logout', error);
+  }
 }
 
 consultaUsers();

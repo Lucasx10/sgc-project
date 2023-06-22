@@ -8,7 +8,8 @@ const userController = new UserController(user);
 
 
 router.get("/", AuthMiddleware, async (req, res) => {
-  if (req.user_id == 1) { // Verifica se o usuário é o (root) pelo id do token
+  //console.log(req)
+  if (req.role == 'admin') { // Verifica se o usuário é o (root) pelo id do token
     const users = await userController.getAll();
     res.json(users);
   } else {
@@ -23,6 +24,10 @@ router.get("/login/:id", AuthMiddleware, async (req, res) => {
   res.json(user);
 });
 
+router.get('/logout', (req, res) => {
+  res.clearCookie('nToken');
+  return res.redirect('/');
+});
 
 router.post("/create", async (req, res) => {
   const { name, email, password } = req.body;
@@ -38,7 +43,9 @@ router.post("/create", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const resp = await userController.login({ email, password });
-
+  console.log(resp.token)
+  res.cookie('nToken', resp.token, { maxAge: 900000, httpOnly: true,  sameSite: 'Strict' });
+  console.log("chamou o cookie")
   if (resp.error) {
     return res.status(400).json(resp);
   }
@@ -54,9 +61,11 @@ router.get("/:id", async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
   const id = req.params.id;
-  const { name , endereco , image, email , password, whatsapp, isAtivo, isAdmin } = req.body;
-  await userController.updateUser(id,{ name , endereco , image, email , password, whatsapp, isAtivo, isAdmin });
+  const { name , endereco , image, email , password, whatsapp, isAtivo, role } = req.body;
+  await userController.updateUser(id,{ name , endereco , image, email , password, whatsapp, isAtivo, role });
   res.send(`Usuário com ID ${id} atualizado com sucesso`);
 });
+
+
 
 export default router;

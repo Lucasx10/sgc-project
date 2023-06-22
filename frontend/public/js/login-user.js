@@ -62,10 +62,12 @@ async function getUserData(id) {
       console.log(userData);
       
       // Use os dados do usuário para preencher a página ou executar outras ações necessárias
-      if (userData.name === "root") {
+      if (userData.role == 'admin' && userData.isAtivo == true) {
         window.location.href = '/root'; // Redirecionar para a tela de root
-      } else {
+      }else if (userData.isAtivo == true){
         window.location.href = '/';
+      }else{
+        window.alert("Seu usuário está desativado");
       }
     } else {
       // Se a chamada falhar, pode ser necessário lidar com o erro adequadamente

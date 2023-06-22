@@ -25,6 +25,8 @@ export default async (req, res, next) => {
       });
     } else {
       req.user_id = decoded.id;
+      req.ativo = decoded.isAtivo;
+      req.role = decoded.role;
       next();
     }
   } catch {

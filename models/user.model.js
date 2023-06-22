@@ -24,10 +24,11 @@ const user = (sequelize, DataTypes) => {
       },
       isAtivo: {
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false, // Define o valor padrão como falso
+      role: {
+        type: DataTypes.STRING,
+        defaultValue: 'student', 
       },
     },
     {
@@ -40,14 +41,14 @@ const user = (sequelize, DataTypes) => {
 
     if (!rootUser) {
       // Criar o usuário root
-      const hashedPassword = await bcrypt.hash("1234", 8); // Criptografar a senha
+      const hashedPassword = await bcrypt.hash("123", 8); // Criptografar a senha
 
       await User.create({
         name: "root",
         email: "root@gmail.com",
         password: hashedPassword, // Usar a senha criptografada
-        isAtivo: true,
-        // isAdmin: true
+        role: "admin",
+        isAtivo: true
       });
     }
   });

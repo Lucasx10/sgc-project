@@ -2,6 +2,8 @@ import express from "express";
 import { categoria } from "../models/index.js";
 import { CategoriaController } from "../controller/categoria.controller.js";
 import { body, validationResult } from "express-validator";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
+
 const router = express.Router();
 
 const categoriaController = new CategoriaController(categoria);
@@ -11,8 +13,7 @@ router.get("/", async (req, res) => {
   res.json(categorias);
 });
 
-router.post(
-  "/create", async (req, res) => {
+router.post("/create", AuthMiddleware, async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -20,11 +21,15 @@ router.post(
     }
 
     //se os dados forem válidos, o sistema executará aqui
-    const { name } = req.body;
-    await categoriaController.adicionar({
-      name,
-    });
-    res.status(201).send("Categoria criada com sucesso!");
+    if (req.role == 'admin') { 
+      const { name } = req.body;
+      await categoriaController.adicionar({
+        name,
+      });
+      res.status(201).send("Categoria criada com sucesso!");
+    }else{
+      res.status(403).json({ error: "Access denied" });
+    }
   }
 );
 

@@ -73,8 +73,10 @@ export class UserController {
         id: userExist.id,
         name: userExist.name,
         email: userExist.email,
+        isAtivo: userExist.isAtivo,
+        role: userExist.role
       },
-      token: jwt.sign({ id: userExist.id }, auth.secret, {
+      token: jwt.sign({ id: userExist.id, isAtivo: userExist.isAtivo, role: userExist.role}, auth.secret, {
         expiresIn: auth.expireIn,
       }),
     };

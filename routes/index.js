@@ -1,9 +1,13 @@
 import express from "express";
+import cookieParser from 'cookie-parser';
 import users from "./users.js";
 import cursos from "./cursos.js";
 import categoria from "./categoria.js";
 
-const router = express.Router();
+const cookieParserT = cookieParser;
+let router = express();
+router.use(cookieParserT())
+router = express.Router();
 
 router.get("/", (req, res) => {
   // res.send("Pagina inicial");
