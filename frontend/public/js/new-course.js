@@ -43,6 +43,7 @@ fetch('http://localhost:3000/categoria')
       
       reader.onload = function(e) {
         preview.src = e.target.result;
+        preview.classList += "w-25";
       };
       
       reader.readAsDataURL(input.files[0]);
