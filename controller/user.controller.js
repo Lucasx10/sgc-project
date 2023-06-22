@@ -18,6 +18,7 @@ export class UserController {
     });
     return userFind;
   }
+  
 
   async adicionar(userData) {
     let userExist = await this.user.findOne({
@@ -86,3 +87,5 @@ export class UserController {
     await this.user.update(userDTO,{ where: { id: id } });
   }
 }
+
+

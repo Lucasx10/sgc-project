@@ -319,6 +319,7 @@ input:focus {
   border-radius: 0.5rem;
 }
 
+
 /* -------------------------- PÁGINA DO CURSO */
 .container-curso {
   display: flex;
@@ -455,3 +456,4 @@ footer {
 /* .add-category{
   width: 30% !important;
 } */
+

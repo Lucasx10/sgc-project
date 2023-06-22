@@ -38,7 +38,10 @@ async function sendLoginRequest(dto) {
         const payloadBase64 = tokenParts[1];
         const payload = atob(payloadBase64);
         const { id } = JSON.parse(payload);
-  
+
+        // Armazenar o id no Local Storage
+        localStorage.setItem('id', id);
+        console.log(localStorage)
         // Chamar a função para obter os dados do usuário
         getUserData(id);
     } else {

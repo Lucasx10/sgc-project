@@ -3,8 +3,10 @@ import cookieParser from 'cookie-parser';
 import users from "./users.js";
 import cursos from "./cursos.js";
 import categoria from "./categoria.js";
+import inscrever from "./inscrever.js"
 
 const cookieParserT = cookieParser;
+
 let router = express();
 router.use(cookieParserT())
 router = express.Router();
@@ -48,4 +50,5 @@ router.get("/pagina-curso/:id", (req, res) => {
 router.use("/users", users);
 router.use("/cursos", cursos);
 router.use("/categoria", categoria);
+router.use("/inscrever", inscrever);
 export default router;

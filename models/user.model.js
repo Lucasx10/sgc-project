@@ -36,6 +36,13 @@ const user = (sequelize, DataTypes) => {
     }
   );
 
+  User.associate = (models) => {
+    User.belongsToMany(models.Curso, {
+      through: "Inscrever",
+      foreignKey: "userId",
+    });
+  };
+
   User.addHook("afterSync", async () => {
     const rootUser = await User.findOne({ where: { name: "root" } });
 

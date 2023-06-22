@@ -36,6 +36,11 @@ const curso = (sequelize, DataTypes) => {
       foreignKey: 'categoriaId',
       as: 'categoria',
     });
+
+    Curso.belongsToMany(models.User, {
+      through: "Inscrever",
+      foreignKey: "cursoId",
+    });
   };
 
   return Curso;

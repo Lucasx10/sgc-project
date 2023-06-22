@@ -1,4 +1,5 @@
 const DivMostraCurso = document.querySelector("#mostra-curso");
+let btnInscrever;
 
 // Pega id enviado pelo backend por cookie
 // Função geral para ler qualquer cookie passando algum nome
@@ -56,11 +57,51 @@ function preencheTelaCurso(curso, categoria) {
       </div>
 
       <div class="card-footer-curso">
-        <button type="button" class="action-curso">Inscrever-se</button>
+        <button type="button" class="action-curso" id="inscrever">Inscrever-se</button>
       </div>
     </div>
   `;
   DivMostraCurso.innerHTML = CursoSelecionado;
+
+  // Adiciona o manipulador de evento ao botão "Inscrever-se"
+  btnInscrever = document.querySelector("#inscrever");
+  btnInscrever.addEventListener("click", inscreverUsuarioNoCurso);
 }
 
 consultaOneCurso(idCurso);
+
+async function inscreverUsuarioNoCurso() {
+  // Lógica para criar a relação UserCurso
+  // Obtenha o ID do usuário armazenado no Local Storage
+  const userId = localStorage.getItem('id'); 
+  const cursoId = idCurso; // ID do curso obtido anteriormente
+  console.log(cursoId)
+  console.log(userId)
+  
+  // Envie uma solicitação POST para criar a relação UserCurso
+  const response = await fetch("http://localhost:3000/inscrever/user-curso", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: userId,
+      cursoId: cursoId,
+    }),
+  });
+  if (response.ok) {
+    // A relação UserCurso foi criada com sucesso
+    console.log("Usuário inscrito no curso!");
+
+    // Adiciona a classe ao botão
+    btnInscrever.style.background = "grey"; 
+
+    // Redirect the user to the login page or any other page
+    //window.location.href = '/';
+  } else {
+     // Houve um erro ao criar a relação UserCurso
+    const errorData = await response.json();
+    console.error(errorData.error);
+  }
+}
+

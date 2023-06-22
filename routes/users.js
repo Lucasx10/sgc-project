@@ -6,7 +6,6 @@ import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 const router = express.Router();
 const userController = new UserController(user);
 
-
 router.get("/", AuthMiddleware, async (req, res) => {
   //console.log(req)
   if (req.role == 'admin') { // Verifica se o usuário é o (root) pelo id do token
@@ -65,7 +64,5 @@ router.put('/update/:id', async (req, res) => {
   await userController.updateUser(id,{ name , endereco , image, email , password, whatsapp, isAtivo, role });
   res.send(`Usuário com ID ${id} atualizado com sucesso`);
 });
-
-
 
 export default router;
