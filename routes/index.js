@@ -47,8 +47,8 @@ router.get("/pagina-curso/:id", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/pagina-curso.html");
 });
 
-router.get("/settings", (req, res) => {
-  res.sendFile(__basedir + "/frontend/src/settings.html");
+router.get("/perfil", (req, res) => {
+  res.sendFile(__basedir + "/frontend/src/perfil.html");
 });
 
 router.use("/users", users);

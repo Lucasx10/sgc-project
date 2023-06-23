@@ -84,8 +84,30 @@ export class UserController {
   }
 
   async updateUser(id, userDTO) {
-    await this.user.update(userDTO,{ where: { id: id } });
+    let userFind = await this.user.findOne({ where: { id } });
+  
+    // Verificar se a senha antiga está correta
+    if (!(await bcrypt.compare(userDTO.oldPassword, userFind.password))) {
+      return {
+        error: true,
+        message: "Senha antiga inválida",
+      };
+    }
+  
+    // Criptografar a nova senha apenas se ela estiver presente no objeto userDTO
+    if (userDTO.newPassword) {
+      userDTO.newPassword = await bcrypt.hash(userDTO.newPassword, 8);
+    }
+  
+    await this.user.update(userDTO, { where: { id: id } });
+  
+    return {
+      error: false,
+      message: "Usuário atualizado com sucesso",
+    };
   }
+  
+  
 }
 
 

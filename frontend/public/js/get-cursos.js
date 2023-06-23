@@ -92,3 +92,29 @@ function preencheTelaInscrito(cursos, categorias) {
 }
 
 
+  // Verificar se há um token válido no Local Storage
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    // Exibir a parte de perfil e o link de logout
+    document.getElementById('perfil-link').style.display = 'block';
+    document.getElementById('logout-link').style.display = 'block';
+    document.getElementById('exibir-cursos-inscrito').style.display = 'block';
+    // Ocultar o link de login
+    document.getElementById('login-link').style.display = 'none';
+  } else {
+    // Ocultar a parte de perfil e o link de logout
+    document.getElementById('perfil-link').style.display = 'none';
+    document.getElementById('logout-link').style.display = 'none';
+    document.getElementById('exibir-cursos-inscrito').style.display = 'none';
+    // Exibir o link de login
+    document.getElementById('login-link').style.display = 'block';
+  }
+
+// Função para fazer logout
+function logout() {
+  // Remover o token do Local Storage
+  localStorage.removeItem('token');
+  localStorage.removeItem('id');
+
+}

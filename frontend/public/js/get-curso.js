@@ -73,7 +73,7 @@ consultaOneCurso(idCurso);
 async function inscreverUsuarioNoCurso() {
   // Lógica para criar a relação UserCurso
   // Obtenha o ID do usuário armazenado no Local Storage
-  const userId = localStorage.getItem('id'); 
+  const userId = sessionStorage.getItem('id'); 
   const cursoId = idCurso; // ID do curso obtido anteriormente
   console.log(cursoId)
   console.log(userId)

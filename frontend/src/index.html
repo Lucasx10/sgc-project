@@ -33,16 +33,19 @@
       /></a>
       <div class="right">
         <a href="/" class="active">Home</a>
-        <a href="/login">Login</a>
+        <a href="/login" id="login-link">Login</a>
+        <a href="/perfil" id="perfil-link">Perfil</a>
+        <a href="/" id="logout-link" style="display: none;" onclick="logout()">Logout</a>
       </div>
     </header>
 
     <!-- CONTENT -->
     <main>
       <div class="content">
-        <h1>Cursos Inscrito</h1>
-        <div class="container-cursos" id="cursos-inscrito"></div>
-        
+        <div id="exibir-cursos-inscrito">
+          <h1>Cursos Inscrito</h1>
+          <div class="container-cursos" id="cursos-inscrito"></div>
+        </div>     
         <h1>Lista de Cursos</h1>
         <div class="container-cursos" id="cursos"></div>
       </div>
