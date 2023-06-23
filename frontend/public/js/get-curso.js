@@ -9,7 +9,7 @@ function read_cookie(name) {
   return result;
 }
 
-var idCurso = read_cookie("cursoid"); //pegando o cookie
+let idCurso = read_cookie("cursoid"); //pegando o cookie
 consultaOneCurso(idCurso);
 
 async function consultaOneCurso(id) {
@@ -73,8 +73,8 @@ consultaOneCurso(idCurso);
 async function inscreverUsuarioNoCurso() {
   // Lógica para criar a relação UserCurso
   // Obtenha o ID do usuário armazenado no Local Storage
-  const userId = sessionStorage.getItem('id'); 
-  const cursoId = idCurso; // ID do curso obtido anteriormente
+  const userId = localStorage.getItem('id'); 
+  const cursoId = idCurso; // ID do curso obtido anteriormente pelo cookie
   console.log(cursoId)
   console.log(userId)
   

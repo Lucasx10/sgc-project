@@ -60,9 +60,9 @@ router.get("/:id", async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
   const id = req.params.id;
-  const { name , endereco , image, email , oldPassword, newPassword, whatsapp } = req.body;
+  const { name , endereco , image, email , oldPassword, newPassword, whatsapp, isAtivo, role } = req.body;
 
-  const resp = await userController.updateUser(id,{ name , endereco , image, email, oldPassword, newPassword, whatsapp});
+  const resp = await userController.updateUserPerfil(id,{ name , endereco , image, email, oldPassword, newPassword, whatsapp, isAtivo, role});
 
   if (resp.error) {
     return res.status(401).json(resp);

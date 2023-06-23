@@ -55,9 +55,6 @@ function preencheTela(cursos, categorias) {
 }
 
 consultaCursos();
-// Obtenha o ID do usuário armazenado no Local Storage
-const userId = localStorage.getItem('id'); 
-consultaCursosInscrito(userId);
 
 function preencheTelaInscrito(cursos, categorias) {
   cursos.forEach((curso) => {
@@ -99,6 +96,9 @@ function preencheTelaInscrito(cursos, categorias) {
     // Exibir a parte de perfil e o link de logout
     document.getElementById('perfil-link').style.display = 'block';
     document.getElementById('logout-link').style.display = 'block';
+    // Obtenha o ID do usuário armazenado no Local Storage
+    const userId = localStorage.getItem('id'); 
+    consultaCursosInscrito(userId);
     document.getElementById('exibir-cursos-inscrito').style.display = 'block';
     // Ocultar o link de login
     document.getElementById('login-link').style.display = 'none';
