@@ -1,4 +1,3 @@
-/* HEADER */
 :root {
     --thistle: #E5C6E8ff;
     --light-coral: #D98A89ff;
@@ -8,13 +7,16 @@
     --oxford-blue: #0C1F44ff;
     --powder-blue: #A8BAD4ff;
     --ash-gray: #D0D7C6ff;
+    /* -- color: #e4eaef; */
 }
+
+/* HEADER */
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e4eaef;
+    background-color: rgb(201, 209, 222);;
     color: #fff;
     padding: 20px;
 }
@@ -55,7 +57,7 @@ header .right {
 
 body {
     height: 100vh;
-    background-color: #e4eaef;
+    background-color: rgb(188, 202, 220);
 }
 
 /* COR DOS BOTÕES*/
@@ -63,6 +65,7 @@ body {
 .submit-button-active {
     background: #6c63ff;
     border-color: #6c63ff;
+    color: #fff;
 }
 
 .submit-button-active:hover {
@@ -80,26 +83,8 @@ body {
     background: #6c63ff;
     color: #fff;
 }
-/* IMPUTS */
 
-
-/* HOVER FORMULÁRIOS */
-.cursos {
-    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    top: 0;
-    position: relative; 
-    background-color: #fff;
-}
-
-    .cursos:hover {
-      top: -10px;
-      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-}
+/* FORMULÁRIOS */
 
 .curso {
     -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
@@ -120,47 +105,26 @@ body {
         box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
 }
 
-.tools-account {
-    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    top: 0;
+.perfil {
     position: relative;
-    width: 50rem; 
-    height: 25rem;
-    padding-bottom: 2rem;
-    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 50rem;
+    height: 38rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    background-color: rgb(201, 209, 222);
 }
-
-    .tools-account:hover {
-      top: -10px;
-      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-}
-
+  
 .new-course {
-    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    top: 0;
     position: relative;
-    width: 50rem; 
-    height: 32rem;
-    padding-bottom: 3.5rem;
-    padding-top: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    background-color: #fff;
-}
-
-    .new-course:hover {
-      top: -10px;
-      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 50rem;
+    height: 40rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    background-color: rgb(201, 209, 222);
 }
 
 .login-cadastro {
@@ -182,3 +146,66 @@ body {
       -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
       box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
 }
+
+  /* -------------------------- CURSOS - Página Inicial */
+  .cursos {
+    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+    -webkit-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out;
+    top: 0;
+    position: relative; 
+    background-color: #fff;
+}
+
+    .cursos:hover {
+      top: -10px;
+      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+}
+
+  .container-cursos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-bottom: 3em;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.75rem;
+    width: 300px;
+    height: 370px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content {
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: small;
+    height: 50%;
+  }
+  
+  .card-title {
+    color: rgb(38 50 56);
+    letter-spacing: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+  
+  .card-footer {
+    padding: 0.75rem;
+    border: 1px solid rgb(236 239 241);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+  }

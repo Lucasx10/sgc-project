@@ -10,6 +10,7 @@ function previewImage(event) {
       reader.onload = function(e) {
         preview.src = e.target.result;
         preview.classList += "w-25";
+        
       };
       
       reader.readAsDataURL(input.files[0]);
@@ -32,11 +33,13 @@ function preencheTelaUser(user) {
     <nav class="navbar navbar-expand-xl">
           <div class="container h-100">
             <a class="navbar-brand" href="/"></a>
-            <div class="tools-account container mt-5 d-flex  align-items-center">
+            <div class="perfil container mt-2 d-flex  align-items-center">
               <div class="row justify-content-center">
-                <h2 class="mt-3 text-center fw-bold mb-5">Configurações da Conta</h2>
+                <h2 class="mt-2 text-center fw-bold mb-3">Configurações da Conta</h2>
                 <form action="" class="ativo row" method="post" id="entrar" enctype="multipart/form-data">
+                  <div class="center-image mb-3 text-center">
                   <img id="preview" src="${user.image}" alt=""/>
+                  </div>
                   <div class="form-group col-6">
                     <div>
                       <label for="image" class="mb-1">Atualizar Foto</label>
@@ -47,17 +50,7 @@ function preencheTelaUser(user) {
 
                     </div>
                   </div>
-              
-                  <div class="form-group col-6">
-                    <label for="email" class="mb-1">E-mail</label>
-                    <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    class="form-control validate"
-                    value="${user.email}"
-                    />
-                  </div>
+                  
                   <div class="form-group col-6">
                     <label for="name" class="mb-1">Nome</label>
                     <input
@@ -66,45 +59,67 @@ function preencheTelaUser(user) {
                       type="text"
                       class="form-control validate"
                       value="${user.name}"
+                      placeholder="Insira seu nome"
                     />
                   </div>
                   <div class="form-group col-6">
-                    <label for="whatsapp" class="mb-1">Celular</label>
+                  <label for="whatsapp" class="mb-1">Celular</label>
+                  <input
+                  id="whatsapp"
+                  name="whatsapp"
+                  type="tel"
+                  class="form-control validate"
+                  value="${user.whatsapp}"
+                  placeholder="Número de celular"
+                  />
+                </div>
+
+                  <div class="form-group col-6">
+                    <label for="email" class="mb-1">E-mail</label>
                     <input
-                    id="whatsapp"
-                    name="whatsapp"
-                    type="tel"
+                    id="email"
+                    name="email"
+                    type="email"
                     class="form-control validate"
-                    value="${user.whatsapp}"
+                    value="${user.email}"
+                    placeholder="Insira seu e-mail"
+                    />
+                  </div>
+                  <div class="form-group col-6 w-100">
+                    <label for="endereco" class="mb-1 w-100">Endereço</label>
+                    <input
+                    id="endereco"
+                    name="endereco"
+                    type="endereco"
+                    class="form-control validate"
+                    placeholder="Rua, Nº, Bairro"
                     />
                   </div>
                   <div class="form-group col-6">
+                    <label for="password2" class="mb-1">Redefinir senha</label>
+                    <input
+                    id="password2"
+                    name="password2"
+                    type="password"
+                    class="form-control validate"
+                    placeholder="Insira uma nova senha"
+                    />
+                  </div>
+                  <div class="form-group col-6 ">
                     <label for="password" class="mb-1">Senha</label>
                     <input
                     id="password"
                     name="password"
                     type="password"
                     class="form-control validate"
+                    placeholder="Senha antiga"
                     />
-                </div>
-                <div class="form-group col-6">
-                  <label for="password2" class="mb-1">Redefinir senha</label>
-                  <input
-                  id="password2"
-                  name="password2"
-                  type="password"
-                  class="form-control validate"
-                  />
-                </div>
-                <div class="d-flex w-100 justify-content-center">
+                  </div>
+                <div class="py-2 mt-3 text-center">
                   <button
                   type="submit"
-                    class="submit-button-active btn btn-primary text-uppercase mt-3 me-4 w-50"
+                    class="submit-button-active submit btn btn-primary col-2 text-uppercase w-100"
                     >Atualizar dados
-                  </button><button
-                  type="submit"
-                  class="submit-button-active btn btn-primary text-uppercase mt-3 w-50"
-                  >Deletar conta
                   </button>
                 </div>
               </div>

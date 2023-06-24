@@ -27,7 +27,7 @@ function preencheTela(cursos, categorias) {
     const categoria = categorias.find((categoria) => categoria.id === curso.categoriaId);
 
     const novoCursoHTML = `
-    <div class="card">
+    <div class="cursos card">
     <div class="card-image" >
       <img
         src="/images/cards/${curso.image}"
@@ -45,7 +45,7 @@ function preencheTela(cursos, categorias) {
       <p class="Categoria">${categoria.name}</p>
       <a href="/pagina-curso/${curso.id}"
         >
-        <button type="button" class="action">Inscrever-se</button></a
+        <button type="button" class="btn btn-outline-danger">Inscrever-se</button></a
       >
     </div>
   </div>
@@ -66,7 +66,7 @@ function preencheTelaInscrito(cursos, categorias) {
       const categoria = categorias.find((categoria) => categoria.id === cursoData.categoriaId);
 
       const novoCursoHTML = `
-        <div class="card">
+        <div class="cursos card">
           <div class="card-image">
             <img src="/images/cards/${cursoData.image}" width="100%" alt="SGC logo" />
           </div>
@@ -77,7 +77,7 @@ function preencheTelaInscrito(cursos, categorias) {
           <div class="card-footer">
             <p class="Categoria">${categoria.name}</p>
             <a href="/pagina-curso/${cursoData.id}">
-              <button type="button" class="action">Inscrito</button>
+              <button type="button" class="btn btn-outline-success">Inscrito</button>
             </a>
           </div>
         </div>
