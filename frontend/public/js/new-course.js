@@ -43,7 +43,7 @@ fetch('http://localhost:3000/categoria')
       
       reader.onload = function(e) {
         preview.src = e.target.result;
-        preview.classList += "w-25";
+       preview.classList += "w-25";
       };
       
       reader.readAsDataURL(input.files[0]);
@@ -53,7 +53,7 @@ fetch('http://localhost:3000/categoria')
 
 function submitForm(event) {
         event.preventDefault()
-        const image = document.getElementById('image').value;
+        const image = document.getElementById('formFile').value;
         const name = document.getElementById('name').value;
         const description = document.getElementById('description').value;
         const ch = document.getElementById('ch').value;
@@ -87,6 +87,7 @@ async function sendToAPI(dto){
       
     });
 }
+
 
 function submitFormCategoria(event) {
   event.preventDefault();

@@ -55,7 +55,6 @@
                   <input class="form-control" id="formFile" onchange="previewImage(event)"
                     type="file"
                     name="image"
-                    id="image"
                     accept="image/*"
                   />
                 </div>
@@ -84,6 +83,7 @@
                 <div class="col-6">
                   <label class="mb-1" for="selectCategorias">Categoria</label>
                   <select class="form-control" id="selectCategorias"></select>
+                   <button type="button" id="add-category">Adicionar Categoria</button>
                   
                 </div>
               </div>
@@ -98,6 +98,40 @@
             </div>
           </form>
         </div>
+
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Adicionar Categoria</h2>
+            <form>
+              <div class="name-field ct-input">
+                <label for="name">Nome da Categoria</label>
+                <input
+                  type="name"
+                  name="name"
+                  id="nameCategoria"
+                  placeholder="Ciência da Computação"
+                />
+              </div>
+              <button type="submit" class="submit" id="criar-categoria" class="close">Criar Categoria</button>
+            </form>
+                    <div class="col-6">
+                      <label class="mb-1" for="selectCategorias">Categoria</label>
+                      <select class="form-control" id="selectCategorias"></select>
+    
+                    </div>
+                  </div>
+                  <div class="description-field ct-input justify-content-center">
+                    <label for="description">Descrição</label>
+                    <textarea class="description form-control" name="description" id="description" cols="17" rows="5" placeholder="Faça uma breve descrição do curso aqui."></textarea>
+                  </div>
+    
+                  <div class=" text-center mt-4">
+                    <button type="submit" class="submit-button-active submit btn btn-primary col-2 text-uppercase w-100" id="criar-curso" >Criar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
       </section>
       <div class="text-center">
           <footer>By <a href="https://github.com/Lucasx10">Lucas</a></footer>
