@@ -45,7 +45,31 @@
 
     <div class="container-curso" id="mostra-curso">
     </div>
+    <div class="progress-container">
+      <progress id="progress-bar" max="100" value="0"></progress>
+      <span id="progress-text">0%</span>
+    </div>
+    
+    <div class="conteudo">
+      <input type="checkbox" id="modulo1">
+      <label for="modulo1">Módulo 1</label>
+      <br>
+      <input type="checkbox" id="modulo2">
+      <label for="modulo2">Módulo 2</label>
+      <br>
+      <input type="checkbox" id="modulo3">
+      <label for="modulo3">Módulo 3</label>
+      <br>
+      <input type="checkbox" id="modulo4">
+      <label for="modulo4">Módulo 4</label>
+      <input type="checkbox" id="modulo5">
+      <label for="modulo5">Módulo 5</label>
+    </div>
 
+    <div class="card-footer-curso" id="exibir-certificado">
+        <button type="button" class="action-curso" id="certificado">Obter Certificado</button>
+    </div>
+    
     <!-- FOOTER -->
     <div class="footer-dark">
       <footer>
@@ -56,7 +80,9 @@
         </div>
       </footer>
     </div>
-    <script src="/js/get-curso.js"></script>
+    <script src="/js/get-curso-inscrito.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
 </html>

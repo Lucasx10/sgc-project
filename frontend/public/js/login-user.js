@@ -62,6 +62,7 @@ async function getUserData(id) {
     if (response.ok) {
       // Os dados do usuário estão na resposta
       const userData = await response.json();
+      localStorage.setItem('nameUser', userData.name)
       console.log(userData);
       
       // Use os dados do usuário para preencher a página ou executar outras ações necessárias

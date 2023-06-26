@@ -1,4 +1,38 @@
 const divCursos = document.querySelector("#mostra-users");
+const btnFecharCurso = document.querySelector("#fechar-curso");
+
+//Função para criar um botão para cada curso
+function createCursoButton(cursoId) {
+  btnFecharCurso.addEventListener("click", emitirCertificados);
+  
+  var button = document.createElement("button");
+  button.textContent = "Fechar Curso " + cursoId;
+  button.addEventListener("click", function () {
+    emitirCertificados(cursoId);
+  });
+
+  return button;
+}
+
+// Função para adicionar os botões dos cursos na página
+function addCursoButtons(cursoIds) {
+  var container = document.getElementById("mostra-cursos");
+
+  cursoIds.forEach(function (cursoId) {
+    var button = createCursoButton(cursoId);
+    container.appendChild(button);
+  });
+}
+
+// Função para carregar os IDs dos cursos e adicionar os botões na página
+async function loadCursoButtons() {
+  const response = await fetch("http://localhost:3000/cursos");
+  const cursos = await response.json();
+
+  var cursoIds = cursos.map(curso => curso.id); // Extrair apenas os IDs dos cursos
+
+  addCursoButtons(cursoIds);
+}
 
 async function consultaUsers() {
   const response = await fetch("http://localhost:3000/users", {
@@ -126,4 +160,25 @@ async function logout() {
   }
 }
 
+async function emitirCertificados(id) {
+  const cursoId = id; // ID do curso a ser fechado
+
+  // Obtenha todos os usuários inscritos no curso
+  const response = await fetch(`http://localhost:3000/inscrever/fecharCurso/${cursoId}`);
+  const usuariosCertificados = await response.json();
+
+  //emite certificado para os usuarios que tem a porcentagem de carga horaria > 90
+  usuariosCertificados.forEach((userId) => {
+      emitirCertificado(userId);
+  });
+}
+
+function emitirCertificado(userId) {
+  // Lógica para emitir o certificado para o usuário com o ID userId
+  // Aqui você pode implementar a lógica específica para emitir o certificado,
+  // Exemplo de impressão no console:
+  console.log(`Certificado emitido para o usuário com ID ${userId}`);
+}
+
 consultaUsers();
+loadCursoButtons();

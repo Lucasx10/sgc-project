@@ -40,6 +40,7 @@ header a:hover {
   color: black;
 }
 
+
 header a.active {
   background-color: #00ade9;
   color: white;
@@ -238,6 +239,20 @@ input:focus {
 }
 
 /* -------------------------- CURSOS - Página Inicial */
+.conteudo {
+  margin-top: 20px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+
 .container-cursos {
   display: flex;
   flex-wrap: wrap;

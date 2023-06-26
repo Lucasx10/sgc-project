@@ -47,6 +47,13 @@ router.get("/pagina-curso/:id", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/pagina-curso.html");
 });
 
+router.get("/pagina-curso-inscrito/:id", (req, res) => {
+  // res.send("Pagina inicial");
+  const { id } = req.params;
+  res.append("Set-Cookie", "cursoid=" + id); // setando o cookie
+  res.sendFile(__basedir + "/frontend/src/pagina-curso-inscrito.html");
+});
+
 router.get("/perfil", (req, res) => {
   res.sendFile(__basedir + "/frontend/src/perfil.html");
 });

@@ -26,6 +26,7 @@ async function consultaOneCurso(id) {
   console.log(curso);
 }
 
+
 function preencheTelaCurso(curso, categoria) {
   const CursoSelecionado = `
     <div class="card-curso">
@@ -68,8 +69,6 @@ function preencheTelaCurso(curso, categoria) {
   btnInscrever.addEventListener("click", inscreverUsuarioNoCurso);
 }
 
-consultaOneCurso(idCurso);
-
 async function inscreverUsuarioNoCurso() {
   // Lógica para criar a relação UserCurso
   // Obtenha o ID do usuário armazenado no Local Storage
@@ -104,4 +103,3 @@ async function inscreverUsuarioNoCurso() {
     console.error(errorData.error);
   }
 }
-

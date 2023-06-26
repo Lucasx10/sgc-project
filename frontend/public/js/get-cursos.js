@@ -13,12 +13,13 @@ async function consultaCursos() {
 
 async function consultaCursosInscrito(userId) {
   const response = await fetch(`http://localhost:3000/inscrever/${userId}/cursos`);
-  const userCursos = await response.json();
+  const userCursos  = await response.json();
 
   const responseCategorias = await fetch("http://localhost:3000/categoria");
   const categorias = await responseCategorias.json();
 
   preencheTelaInscrito(userCursos, categorias);
+  console.log(userCursos)
 }
 
 function preencheTela(cursos, categorias) {
@@ -76,7 +77,7 @@ function preencheTelaInscrito(cursos, categorias) {
           </div>
           <div class="card-footer">
             <p class="Categoria">${categoria.name}</p>
-            <a href="/pagina-curso/${cursoData.id}">
+            <a href="/pagina-curso-inscrito/${cursoData.id}">
               <button type="button" class="btn btn-outline-success">Inscrito</button>
             </a>
           </div>
