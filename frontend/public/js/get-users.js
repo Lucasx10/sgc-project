@@ -1,14 +1,12 @@
 const divCursos = document.querySelector("#mostra-users");
-const btnFecharCurso = document.querySelector("#fechar-curso");
 
 //Função para criar um botão para cada curso
-function createCursoButton(cursoId) {
-  btnFecharCurso.addEventListener("click", emitirCertificados);
+function createCursoButton(cursos) {
   
   var button = document.createElement("button");
-  button.textContent = "Fechar Curso " + cursoId;
+  button.textContent = "Fechar Curso:  " + cursos.name;
   button.addEventListener("click", function () {
-    emitirCertificados(cursoId);
+    emitirCertificados(cursos);
   });
 
   return button;
@@ -17,7 +15,7 @@ function createCursoButton(cursoId) {
 // Função para adicionar os botões dos cursos na página
 function addCursoButtons(cursoIds) {
   var container = document.getElementById("mostra-cursos");
-
+  console.log(cursoIds)
   cursoIds.forEach(function (cursoId) {
     var button = createCursoButton(cursoId);
     container.appendChild(button);
@@ -29,8 +27,13 @@ async function loadCursoButtons() {
   const response = await fetch("http://localhost:3000/cursos");
   const cursos = await response.json();
 
-  var cursoIds = cursos.map(curso => curso.id); // Extrair apenas os IDs dos cursos
-
+  var cursoIds = cursos.map(curso => {
+    return {
+      id: curso.id,
+      name: curso.name
+    };
+  }); // Extrair apenas os IDs dos cursos
+  
   addCursoButtons(cursoIds);
 }
 
@@ -122,7 +125,6 @@ async function ativarDesativarUsuario(id) {
 }
 
 async function atualizarUsuario(id, usuarioDto) {
-  console.log(usuarioDto)
   try {
     const response = await fetch(`http://localhost:3000/users/update/${id}`, { method: 'PUT',
     headers: {
@@ -160,8 +162,8 @@ async function logout() {
   }
 }
 
-async function emitirCertificados(id) {
-  const cursoId = id; // ID do curso a ser fechado
+async function emitirCertificados(cursos) {
+  const cursoId = cursos.id; // ID do curso a ser fechado
 
   // Obtenha todos os usuários inscritos no curso
   const response = await fetch(`http://localhost:3000/inscrever/fecharCurso/${cursoId}`);
