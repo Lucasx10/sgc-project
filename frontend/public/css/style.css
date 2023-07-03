@@ -1,211 +1,206 @@
 :root {
-    --thistle: #E5C6E8ff;
-    --light-coral: #D98A89ff;
-    --blue-gray: #5D9BE4ff;
-    --tropical-indigo: #8B7EBFff;
-    --tea-rose-red: #E4B8B4ff;
-    --oxford-blue: #0C1F44ff;
-    --powder-blue: #A8BAD4ff;
-    --ash-gray: #D0D7C6ff;
-    /* -- color: #e4eaef; */
+  --thistle: #E5C6E8ff;
+  --light-coral: #D98A89ff;
+  --blue-gray: #5D9BE4ff;
+  --tropical-indigo: #8B7EBFff;
+  --tea-rose-red: #E4B8B4ff;
+  --oxford-blue: #0C1F44ff;
+  --powder-blue: #A8BAD4ff;
+  --ash-gray: #D0D7C6ff;
+  /* -- color: #e4eaef; */
 }
 
 /* HEADER */
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(201, 209, 222);;
-    color: #fff;
-    padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(201, 209, 222);;
+  color: #fff;
+  padding: 20px;
 }
-  
-  header a {
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-    padding: 10px 15px;
+
+header a {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+  padding: 10px 15px;
 }
-  
-  header a:hover {
-    background-color: #ddd;
-    color: black;
+
+header a:hover {
+  background-color: #ddd;
+  color: black;
 }
-  
-  header a.active {
-    background-color: #6c63ff;
-    color: white;
+
+header a.active {
+  background-color: #6c63ff;
+  color: white;
 }
-  
-  header a.logo {
-    height: 100%;
+
+header a.logo {
+  height: 100%;
 }
 
 header .right {
-    display: flex;
-    gap: 10px;
-    padding: 10px 30px;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 10px 30px;
+  align-items: center;
+  height: 100%;
 }
 
 /* BODY */
 
 body {
-    height: 100vh;
-    background-color: rgb(188, 202, 220);
+  height: 100vh;
+  background-color: rgb(188, 202, 220);
 }
 
 /* COR DOS BOTÕES*/
 
 .submit-button-active {
-    background: #6c63ff;
-    border-color: #6c63ff;
-    color: #fff;
+  background: #6c63ff;
+  border-color: #6c63ff;
+  color: #fff;
 }
 
 .submit-button-active:hover {
-    background: #493cf9;
-    border-color: #493cf9;
-    color: #fff;
+  background: #493cf9;
+  border-color: #493cf9;
+  color: #fff;
 }
 
 .submit-button {
-    color: #6c63ff;
-    border-color: #6c63ff;
+  color: #6c63ff;
+  border-color: #6c63ff;
 }
 
 .submit-button:hover {
-    background: #6c63ff;
-    color: #fff;
+  background: #6c63ff;
+  color: #fff;
+  border-color: #6c63ff;
 }
 
 /* FORMULÁRIOS */
 
 .curso {
-    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    top: 0;
-    position: relative;
-    padding-left: 2rem;
-    width: 60rem; 
-    height: 20rem;
-    padding-bottom: 21rem; 
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  top: 0;
+  position: relative;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  width: 60rem; 
+  height: 20rem;
 }
-    .curso:hover {
-        top: -10px;
-        -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-        box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+  .curso:hover {
+      top: -10px;
+      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
 }
 
 .perfil {
-    position: relative;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 50rem;
-    height: 38rem;
-    padding-left: 4rem;
-    padding-right: 4rem;
-    background-color: rgb(201, 209, 222);
+  position: relative;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 50rem;
+  height: flex;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  background-color: rgb(201, 209, 222);
 }
-  
+
 .new-course {
-    position: relative;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 50rem;
-    height: 40rem;
-    padding-left: 4rem;
-    padding-right: 4rem;
-    background-color: rgb(201, 209, 222);
+  position: relative;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 50rem;
+  height: flex;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  background-color: rgb(201, 209, 222);
+
 }
 
 .login-cadastro {
-    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    top: 0;
-    position: relative;
-    width: 50rem; 
-    height: 32rem;
-    background-color: #fff;
-
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  top: 0;
+  position: relative;
+  width: 50rem; 
+  height: 32rem;
+  background-color: #fff;
 }
 
-    .login-cadastro:hover {
-      top: -10px;
-      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+/* -------------------------- CURSOS - Página Inicial */
+.cursos {
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  top: 0;
+  position: relative; 
+  background-color: #fff;
 }
 
-  /* -------------------------- CURSOS - Página Inicial */
-  .cursos {
-    -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    top: 0;
-    position: relative; 
-    background-color: #fff;
+  .cursos:hover {
+    top: -10px;
+    -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
 }
 
-    .cursos:hover {
-      top: -10px;
-      -webkit-box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 2px 22px -1px rgba(0, 0, 0, 0.3);
+.container-cursos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding-left: 10em;
+  padding-right: 10em;
+  padding-bottom: 3em;
 }
 
-  .container-cursos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    padding-left: 10em;
-    padding-right: 10em;
-    padding-bottom: 3em;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 0.75rem;
-    width: 300px;
-    height: 370px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-content {
-    border: none;
-    padding: 0.5rem;
-    text-align: center;
-    font-size: small;
-    height: 50%;
-  }
-  
-  .card-title {
-    color: rgb(38 50 56);
-    letter-spacing: 0;
-    font-weight: 600;
-    font-size: 1.25rem;
-  }
-  
-  .card-footer {
-    padding: 0.75rem;
-    border: 1px solid rgb(236 239 241);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 15%;
-  }
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  width: 300px;
+  height: 370px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: small;
+  height: 50%;
+}
+
+.card-title {
+  color: rgb(38 50 56);
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.card-footer {
+  padding: 0.75rem;
+  border: 1px solid rgb(236 239 241);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 15%;
+}

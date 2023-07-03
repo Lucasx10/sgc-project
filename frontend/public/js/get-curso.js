@@ -29,39 +29,46 @@ async function consultaOneCurso(id) {
 
 function preencheTelaCurso(curso, categoria) {
   const CursoSelecionado = `
-    <div class="card-curso">
-      <div class="card-image-curso">
-        <img
-          src="/images/cards/${curso.image}"
-          width="100%"
-          alt="SGC logo"
-        />
-      </div>
-      <div class="card-content-curso">
-        <h2 class="card-title-curso">${curso.name}</h2>
-        <div>
-          <span class="card-content-curso-word">Descrição: </span>
-          <span>${curso.description}</span>
+  <div class="curso container">
+    <div class="d-flex">
+      <img
+        src="/images/cards/${curso.image}"
+        class="img-fluid align-items-center"
+        style="height: 200px"
+        alt="SGC logo"
+      />
+      <div>
+        <div class="text-center">
+          <h2 class="card-title-curso fw-bolder">${curso.name}</h2>
         </div>
         <div>
-          <span class="card-content-curso-word">Carga Horaria: </span>
-          <span>${curso.ch}</span>
+          <div class="text-left mx-4">
+            <div >
+              <span class="card-content-curso-word fw-bolder" >Descrição: </span>
+              <span>${curso.description}</span>
+            </div>
+            <div>
+              <span class="card-content-curso-word fw-bolder">Carga Horaria: </span>
+              <span>${curso.ch}</span>
+            </div>
+            <div>
+              <span class="card-content-curso-word fw-bolder">Data de Inicio: </span>
+              <span>${curso.date_start}</span>
+            </div>
+            <div>
+              <span class="card-content-curso-word fw-bolder">Categoria: </span>
+              <span>${categoria.name}</span>
+            </div>
+          </div>  
         </div>
-        <div>
-          <span class="card-content-curso-word">Data de Inicio: </span>
-          <span>${curso.date_start}</span>
-        </div>
-        <div>
-          <span class="card-content-curso-word">Categoria: </span>
-          <span>${categoria.name}</span>
-        </div>
-      </div>
-
-      <div class="card-footer-curso">
-        <button type="button" class="action-curso" id="inscrever">Inscrever-se</button>
       </div>
     </div>
-  `;
+
+    <div class="card-footer-curso">
+      <button type="button" class="btn btn-outline-danger mt-3" id="inscrever">Inscrever-se</button>
+    </div>
+  </div> 
+`;
   DivMostraCurso.innerHTML = CursoSelecionado;
 
   // Adiciona o manipulador de evento ao botão "Inscrever-se"
