@@ -61,11 +61,18 @@ function closeModal() {
   async function deletarCursoById(id) {
     console.log(id)
     try {
-      const response = await fetch(`http://localhost:3000/cursos/delete/${id}`, { method: 'DELETE' });
+      const response = await fetch(`http://localhost:3000/cursos/delete/${id}`, { method: 'DELETE' ,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (response.ok) {
         location.reload()
       } else {
-        console.error('Erro ao deletar item');
+        const errorResponse = await response.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+        window.alert(errorMessage);
       }
     } catch (error) {
       console.error('Erro ao fazer requisição', error);

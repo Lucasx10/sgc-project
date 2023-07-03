@@ -106,16 +106,18 @@ async function sendToAPI(dto){
     const respostaAPI = await fetch('http://localhost:3000/cursos/create', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(dto)
     })
-    .then(response =>{ 
-      response.json();})
-    .catch(error => {
-      console.error('Erro:', error);
-      
-    });
+    if (respostaAPI.ok) {
+      window.location.href = '/cursos-management';
+    } else {
+      const errorResponse = await respostaAPI.json(); // Captura a resposta como um objeto JSON
+      const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+      window.alert(errorMessage);
+    }
 }
 
 

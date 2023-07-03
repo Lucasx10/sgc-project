@@ -1,11 +1,9 @@
-const submitBtnUpdateCategoria = document.getElementById('alterar-curso')
+const submitBtnUpdateCurso = document.getElementById('alterar-curso')
 
 async function getID(){
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get('id');
-    console.log("hello")
     const curso = await findCursoById(id);
-    console.log("curso.id")
     preencheEdit(curso)
 }
 
@@ -31,7 +29,7 @@ async function preencheEdit(curso) {
     
 
 
-    submitBtnUpdateCategoria.addEventListener('click', () => {
+    submitBtnUpdateCurso.addEventListener('click', () => {
         submitEditCurso(curso.id);
     });
 }
@@ -105,18 +103,21 @@ function submitEditCurso(cursoId) {
 }
 
 async function atualizarCurso(id, cursoDto) {
-    console.log("chegou-aqui")
+    
     try {
       const response = await fetch(`http://localhost:3000/cursos/update/${id}`, { method: 'PUT',
       headers: {
-       'Content-Type': 'application/json'
+       'Content-Type': 'application/json',
+       'Authorization': `Bearer ${localStorage.getItem('token')}`
        },
        body: JSON.stringify(cursoDto)},
       );
       if (response.ok) {
         location.reload()
       } else {
-        console.error('Erro ao atualizar item');
+        const errorResponse = await response.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+        window.alert(errorMessage);
       }
     } catch (error) {
       console.error('Erro ao fazer requisição', error);
