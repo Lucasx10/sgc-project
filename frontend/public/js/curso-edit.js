@@ -3,8 +3,9 @@ const submitBtnUpdateCategoria = document.getElementById('alterar-curso')
 async function getID(){
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get('id');
-    
+    console.log("hello")
     const curso = await findCursoById(id);
+    console.log("curso.id")
     preencheEdit(curso)
 }
 
@@ -75,7 +76,7 @@ async function findCategoriaById(id) {
 
 
 async function findCursoById(id) {
-    const cursoResponse= await fetch(`http://localhost:3000/cursos/${id}`);
+    const cursoResponse= await fetch(`http://localhost:3000/cursos/page/${id}`);
     const curso = await cursoResponse.json();
     return curso;
 }
