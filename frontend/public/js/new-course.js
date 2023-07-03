@@ -4,6 +4,8 @@ const modal = document.getElementById('modal');
 const openModalButton = document.getElementById('add-category');
 const closeModalButton = document.getElementsByClassName('close')[0];
 
+let nomedaImagem;
+
 fetch('http://localhost:3000/categoria')
   .then(response => response.json())
   .then(data => {
@@ -48,12 +50,39 @@ fetch('http://localhost:3000/categoria')
       
       reader.readAsDataURL(input.files[0]);
     }
+
+    const fileInput = event.target; // Campo de entrada de arquivo
+    const file = fileInput.files[0]; // Obtém o arquivo selecionado
+    const fileName = file.name; // Obtém o nome do arquivo
+    nomedaImagem = fileName
+
+    // Verifica se um arquivo foi selecionado
+    if (file) {
+      const formData = new FormData(); // Cria um objeto FormData
+      formData.append('image', file, fileName); // Adiciona o arquivo ao FormData com o nome original
+
+      // Faz a requisição para enviar o arquivo para o servidor
+      fetch('http://localhost:3000/cursos/upload', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('Imagem enviada com sucesso');
+          } else {
+            console.error('Erro ao enviar imagem:', response.status);
+          }
+        })
+        .catch(error => {
+          console.error('Erro na requisição:', error);
+        });
+    }
 }
 
 
 function submitForm(event) {
         event.preventDefault()
-        const image = document.getElementById('formFile').value;
+        const image = nomedaImagem;
         const name = document.getElementById('name').value;
         const description = document.getElementById('description').value;
         const ch = document.getElementById('ch').value;
@@ -61,11 +90,11 @@ function submitForm(event) {
 
         const dto = { 
             name: name, 
-            image: "logica.png",
+            image: image,
             description: description,
             ch: ch,
             quantInscritos: 0, 
-            date_start: "20/05/2023",
+            date_start: new Date(),
             categoriaId: categoriaId
         };
         console.log(dto)
