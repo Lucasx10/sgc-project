@@ -20,7 +20,8 @@ function createTableCourse(cursos, categorias) {
       const novoLinhaHTML = `
         <tr>
             <td>${curso.name}</td>
-            <td>${categoria.name}</td>
+            <td style="text-align: center;">${curso.quantInscritos}</td>
+            <td style="text-align: center;">${categoria.name}</td>
             <td>
             <i style="color: green"  onClick="alterar(${curso.id})"  class="fa-solid fa-pen-to-square" style="padding-left: 15px"></i>
             <i style="color: red" onClick="confirmarExclusao(${curso.id})" class="delete-category fa-solid fa-trash-can"></i>
