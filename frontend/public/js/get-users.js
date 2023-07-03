@@ -55,7 +55,7 @@ async function consultaUsers() {
 function preencheTela(users) {
   users.forEach((user) => {
     const novoCursoHTML = `
-    <div class="card-curso">
+    <div class="card-curso h-25 mx-2 mt-5">
         <div class="card-content">
         <h2 class="card-title">${user.name}</h2>
         <p>

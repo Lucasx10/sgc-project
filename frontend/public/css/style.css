@@ -60,12 +60,13 @@ body {
   background-color: rgb(188, 202, 220);
 }
 
-/* COR DOS BOTÕES*/
+/*BOTÕES*/
 
 .submit-button-active {
   background: #6c63ff;
   border-color: #6c63ff;
   color: #fff;
+  width: 8rem;
 }
 
 .submit-button-active:hover {
@@ -77,6 +78,7 @@ body {
 .submit-button {
   color: #6c63ff;
   border-color: #6c63ff;
+  width: 8rem;
 }
 
 .submit-button:hover {
@@ -125,7 +127,7 @@ body {
   height: flex;
   padding-left: 4rem;
   padding-right: 4rem;
-  background-color: rgb(201, 209, 222);
+  background-color: #c9d1de;
 
 }
 
@@ -203,4 +205,63 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 15%;
+}
+
+/* ROOT */
+
+.container-curso {
+  display: flex;
+  justify-content: center;
+  padding-left: 10em;
+  padding-right: 10em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  width: 100%; 
+}
+
+.card-curso {
+  background-color:#c9d1de;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.75rem;
+  width: 80%;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: small;
+  height: 50%;
+}
+
+.card-title {
+  color: rgb(38 50 56);
+  letter-spacing: 0;
+
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Gerenciar Cursos */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mytable{
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.color-text-button {
+  color: white;
 }
