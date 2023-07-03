@@ -14,6 +14,9 @@ const curso = (sequelize, DataTypes) => {
       ch: {
         type: DataTypes.INTEGER,
       },
+      quantInscritos: {
+        type: DataTypes.INTEGER,
+      },
       date_start: {
         type: DataTypes.STRING,
       },

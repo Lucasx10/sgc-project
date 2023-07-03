@@ -37,12 +37,13 @@ router.post(
     
     //const upload = multer({ storage });
     //se os dados forem válidos, o sistema executará aqui
-    const { name, image, description,ch, date_start,categoriaId } = req.body;
+    const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
     await cursoController.adicionar({
       name,
       image,
       description,
       ch,
+      quantInscritos,
       date_start,
       categoriaId,
     });
@@ -52,7 +53,7 @@ router.post(
 
 router.get("/page/:id", async (req, res) => {
   const { id } = req.params;
-  // console.log(id);
+   console.log(id);
   const curso = await cursoController.getCurso(id);
   res.json(curso);
 });
@@ -71,8 +72,8 @@ router.delete('/delete/:id', async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
   const id = req.params.id;
-  const { name, image, description,ch, date_start,categoriaId } = req.body;
-  await cursoController.updateCurso(id,{name, image, description,ch, date_start,categoriaId });
+  const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
+  await cursoController.updateCurso(id,{name, image, description,ch,quantInscritos, date_start,categoriaId });
   res.send(`Curso com ID ${id} atualizado com sucesso`);
 });
 

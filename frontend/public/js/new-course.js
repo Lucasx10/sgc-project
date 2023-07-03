@@ -63,7 +63,8 @@ function submitForm(event) {
             name: name, 
             image: "logica.png",
             description: description,
-            ch: ch, 
+            ch: ch,
+            quantInscritos: 0, 
             date_start: "20/05/2023",
             categoriaId: categoriaId
         };

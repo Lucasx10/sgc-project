@@ -90,10 +90,21 @@ async function inscreverUsuarioNoCurso() {
   });
   if (response.ok) {
     // A relação UserCurso foi criada com sucesso
+    console.log(idCurso)
+    const cursoUpdate = await findCursoById(idCurso);
+    let quantInscritosUpdate = cursoUpdate.quantInscritos + 1;
     console.log("Usuário inscrito no curso!");
 
     // Adiciona a classe ao botão
     btnInscrever.style.background = "grey"; 
+
+    const cursoDto = {
+      quantInscritos: quantInscritosUpdate,
+    };
+
+    atualizarNumInscritosCurso(idCurso, cursoDto);
+
+    
 
     // Redirect the user to the login page or any other page
     //window.location.href = '/';
@@ -103,3 +114,29 @@ async function inscreverUsuarioNoCurso() {
     console.error(errorData.error);
   }
 }
+
+async function atualizarNumInscritosCurso(id, cursoDto) {
+  try {
+    const response = await fetch(`http://localhost:3000/cursos/update/${id}`, { method: 'PUT',
+    headers: {
+     'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(cursoDto)},
+    );
+    if (response.ok) {
+      location.reload()
+    } else {
+      console.error('Erro ao atualizar item');
+    }
+  } catch (error) {
+    console.error('Erro ao fazer requisição', error);
+  }
+}
+
+async function findCursoById(id) {
+  const cursoResponse= await fetch(`http://localhost:3000/cursos/page/${id}`);
+  const curso = await cursoResponse.json();
+  console.log("curso")
+  return curso;
+}
+

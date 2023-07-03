@@ -23,7 +23,7 @@ const inscrever = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "Inscrever",
+      tableName: "inscricao",
     }
   );
 

@@ -28,8 +28,8 @@ export class CursoController {
     await this.curso.destroy({ where: { id: id } });
   }
 
-  async updateCurso(id, categoriaDTO) {
-    await this.curso.update(categoriaDTO,{ where: { id: id } });
+  async updateCurso(id, cursoDTO) {
+    await this.curso.update(cursoDTO,{ where: { id: id } });
   }
 
 }
