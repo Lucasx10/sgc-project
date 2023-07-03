@@ -47,6 +47,7 @@ async function sendLoginRequest(dto) {
     } else {
       // Autenticação falhou, exibir uma mensagem de erro ou executar outras ações
       console.error('Falha na autenticação');
+      window.alert("Email ou Senha incorretos");
     }
 }
 

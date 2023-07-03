@@ -4,8 +4,8 @@ const divCursos = document.querySelector("#mostra-users");
 function createCursoButton(cursos) {
   
   var button = document.createElement("button");
-  button.textContent = "Fechar Curso:  " + cursos.name;
-  button.classList.add("btn", "btn-danger", "me-1"); // Adiciona as classes do Bootstrap
+  button.textContent = "Emitir certificados:  " + cursos.name;
+  button.classList.add("btn", "btn-info", "me-1"); // Adiciona as classes do Bootstrap
   button.addEventListener("click", function () {
     emitirCertificados(cursos);
   });
