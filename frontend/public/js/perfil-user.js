@@ -1,4 +1,5 @@
 const DivMostraUser = document.querySelector("#mostra-user"); 
+let nomedaImagem;
 
 function previewImage(event) {
     var input = event.target;
@@ -14,6 +15,33 @@ function previewImage(event) {
       };
       
       reader.readAsDataURL(input.files[0]);
+    }
+
+    const fileInput = event.target; // Campo de entrada de arquivo
+    const file = fileInput.files[0]; // Obtém o arquivo selecionado
+    const fileName = file.name; // Obtém o nome do arquivo
+    nomedaImagem = fileName
+
+    // Verifica se um arquivo foi selecionado
+    if (file) {
+      const formData = new FormData(); // Cria um objeto FormData
+      formData.append('image', file, fileName); // Adiciona o arquivo ao FormData com o nome original
+
+      // Faz a requisição para enviar o arquivo para o servidor
+      fetch('http://localhost:3000/users/upload', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('Imagem enviada com sucesso');
+          } else {
+            console.error('Erro ao enviar imagem:', response.status);
+          }
+        })
+        .catch(error => {
+          console.error('Erro na requisição:', error);
+        });
     }
 }
 
@@ -38,7 +66,7 @@ function preencheTelaUser(user) {
                 <h2 class="mt-2 text-center fw-bold mb-3">Configurações da Conta</h2>
                 <form action="" class="ativo row" method="post" id="entrar" enctype="multipart/form-data">
                   <div class="center-image mb-3 text-center">
-                  <img id="preview" src="${user.image}" alt=""/>
+                  <img id="preview" src="../images/usuarios/${user.image}" alt=""/>
                   </div>
                   <div class="form-group col-6">
                     <div>
@@ -141,6 +169,7 @@ function preencheTelaUser(user) {
 function atualizarDados(event) {
   event.preventDefault();
 
+  const foto = nomedaImagem;
   const email = document.getElementById('email').value;
   const name = document.getElementById('name').value;
   const whatsapp = document.getElementById('whatsapp').value;
@@ -150,6 +179,7 @@ function atualizarDados(event) {
   const dadosAtualizados = {
     email,
     name,
+    image: foto,
     whatsapp,
     oldPassword,
     newPassword
