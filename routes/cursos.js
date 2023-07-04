@@ -20,10 +20,11 @@ router.post(
   [
     //validação dos dados
     body("name").notEmpty().trim().withMessage("O campo nome é obrigatório"),
-  ],
+  ], AuthMiddleware,
   async (req, res) => {
     
     // caso encontre erros, ficará nessa variável errors
+    console.log(req.role )
     if (req.role == 'admin') { 
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -55,7 +56,7 @@ router.get("/page/:id", async (req, res) => {
   res.json(curso);
 });
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', AuthMiddleware, async (req, res) => {
   try{
     if (req.role == 'admin') { 
     const id = req.params.id;
