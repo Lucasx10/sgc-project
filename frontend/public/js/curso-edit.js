@@ -1,11 +1,9 @@
-const submitBtnUpdateCategoria = document.getElementById('alterar-curso')
+const submitBtnUpdateCurso = document.getElementById('alterar-curso')
 
 async function getID(){
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get('id');
-    console.log("hello")
     const curso = await findCursoById(id);
-    console.log("curso.id")
     preencheEdit(curso)
 }
 
@@ -31,13 +29,13 @@ async function preencheEdit(curso) {
     
 
 
-    submitBtnUpdateCategoria.addEventListener('click', () => {
+    submitBtnUpdateCurso.addEventListener('click', () => {
         submitEditCurso(curso.id);
     });
 }
 
 function categorias(){
-    fetch('http://localhost:3000/categoria')
+    fetch('http://18.231.150.50:3000/categoria')
   .then(response => response.json())
   .then(data => {
     // Obtém o elemento select do HTML
@@ -69,14 +67,14 @@ function categorias(){
 }
 
 async function findCategoriaById(id) {
-    const categoriaObject = await fetch(`http://localhost:3000/categoria/${id}`);
+    const categoriaObject = await fetch(`http://18.231.150.50:3000/categoria/${id}`);
     const categoria = await categoriaObject.json();
     return categoria;
 }
 
 
 async function findCursoById(id) {
-    const cursoResponse= await fetch(`http://localhost:3000/cursos/page/${id}`);
+    const cursoResponse= await fetch(`http://18.231.150.50:3000/cursos/page/${id}`);
     const curso = await cursoResponse.json();
     return curso;
 }
@@ -105,18 +103,21 @@ function submitEditCurso(cursoId) {
 }
 
 async function atualizarCurso(id, cursoDto) {
-    console.log("chegou-aqui")
+    
     try {
-      const response = await fetch(`http://localhost:3000/cursos/update/${id}`, { method: 'PUT',
+      const response = await fetch(`http://18.231.150.50:3000/cursos/update/${id}`, { method: 'PUT',
       headers: {
-       'Content-Type': 'application/json'
+       'Content-Type': 'application/json',
+       'Authorization': `Bearer ${localStorage.getItem('token')}`
        },
        body: JSON.stringify(cursoDto)},
       );
       if (response.ok) {
         location.reload()
       } else {
-        console.error('Erro ao atualizar item');
+        const errorResponse = await response.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+        window.alert(errorMessage);
       }
     } catch (error) {
       console.error('Erro ao fazer requisição', error);

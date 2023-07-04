@@ -40,11 +40,15 @@ router.get("/:id", async (req, res) => {
   res.json(categoria);
 });
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', AuthMiddleware, async (req, res) => {
   try{
+    if (req.role == 'admin') { 
     const id = req.params.id;
     await categoriaController.deleteCategoria(id);
     res.status(204).send(`Categoria com ID ${id} excluído com sucesso`);
+    }else{
+      res.status(403).json({ error: "Você não tem permissão para delete" });
+    }
   }catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao remover categoria' });
@@ -52,11 +56,15 @@ router.delete('/delete/:id', async (req, res) => {
   
 });
 
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', AuthMiddleware, async (req, res) => {
+  if (req.role == 'admin') { 
   const id = req.params.id;
   const { name } = req.body;
   await categoriaController.updateCategoria(id,{name});
   res.send(`Categoria com ID ${id} atualizado com sucesso`);
+  }else{
+    res.status(403).json({ error: "Você não tem permissão para fazer update" });
+  }
 });
 
 export default router;

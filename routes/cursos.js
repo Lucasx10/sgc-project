@@ -3,6 +3,7 @@ import { curso } from "../models/index.js";
 import { CursoController } from "../controller/curso.controller.js";
 import { body, validationResult } from "express-validator";
 import multer from "multer";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 
@@ -19,26 +20,32 @@ router.post(
   [
     //validação dos dados
     body("name").notEmpty().trim().withMessage("O campo nome é obrigatório"),
-  ],
+  ], AuthMiddleware,
   async (req, res) => {
-    // caso encontre erros, ficará nessa variável errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
     
-    //se os dados forem válidos, o sistema executará aqui
-    const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
-    await cursoController.adicionar({
-      name,
-      image,
-      description,
-      ch,
-      quantInscritos,
-      date_start,
-      categoriaId,
-    });
-    res.status(201).send("Curso criado com sucesso!");
+    // caso encontre erros, ficará nessa variável errors
+    console.log(req.role )
+    if (req.role == 'admin') { 
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      
+      //se os dados forem válidos, o sistema executará aqui
+      const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
+      await cursoController.adicionar({
+        name,
+        image,
+        description,
+        ch,
+        quantInscritos,
+        date_start,
+        categoriaId,
+      });
+      res.status(201).send("Curso criado com sucesso!");
+    }else{
+      res.status(403).json({ error: "Você não tem permissão para create" });
+    }
   }
 );
 
@@ -49,11 +56,15 @@ router.get("/page/:id", async (req, res) => {
   res.json(curso);
 });
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', AuthMiddleware, async (req, res) => {
   try{
+    if (req.role == 'admin') { 
     const id = req.params.id;
     await cursoController.deleteCurso(id);
     res.status(204).send(`Curso com ID ${id} excluído com sucesso`);
+    }else{
+      res.status(403).json({ error: "Você não tem permissão para delete" });
+    }
   }catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao remover Curso' });
@@ -61,11 +72,15 @@ router.delete('/delete/:id', async (req, res) => {
   
 });
 
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', AuthMiddleware, async (req, res) => {
+  if (req.role == 'admin') { 
   const id = req.params.id;
   const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
   await cursoController.updateCurso(id,{name, image, description,ch,quantInscritos, date_start,categoriaId });
   res.send(`Curso com ID ${id} atualizado com sucesso`);
+  }else{
+    res.status(403).json({ error: "Você não tem permissão para update" });
+  }
 });
 
 const storage = multer.diskStorage({
