@@ -2,6 +2,7 @@ import express from "express";
 import { curso, inscrever } from "../models/index.js";
 import { InscreverController } from "../controller/inscrever.controller.js";
 import { Op } from "sequelize"
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 
 const router = express.Router();
@@ -55,6 +56,24 @@ router.get("/:userId/cursos", async (req, res) => {
     console.error("Erro ao buscar os cursos do usuário:", error);
     res.status(500).json({ error: "Erro ao buscar os cursos do usuário" });
   }
+});
+
+
+router.delete('/delete/:cursoId', AuthMiddleware, async (req, res) => {
+  try{
+    if (req.role == 'admin') { 
+    console.log(req.params)
+    const id = req.params.cursoId;
+    await inscreverController.deleteInscricao(id);
+    res.status(204).send(`Curso com ID ${id} excluído com sucesso`);
+    }else{
+      res.status(403).json({ error: "Você não tem permissão para delete" });
+    }
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao remover Curso' });
+  }
+  
 });
 
 router.post("/cargaHoraria", async (req, res) => {

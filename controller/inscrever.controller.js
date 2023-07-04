@@ -19,4 +19,8 @@ export class InscreverController {
   
       return userCursoAPI.inscrever;
     }
+
+    async deleteInscricao(id) {
+      await this.inscrever.destroy({ where: { cursoId: id } });
+    }
 }

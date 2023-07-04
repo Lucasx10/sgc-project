@@ -3,10 +3,10 @@ const closeModalButton = document.getElementsByClassName('close')[0];
 const excluir = document.getElementById('excluir');
 
 async function consultaCursos() {
-    const responseCursos = await fetch("http://localhost:3000/cursos");
+    const responseCursos = await fetch("http://18.231.150.50:3000/cursos");
     const cursos = await responseCursos.json();
 
-    const responseCategorias = await fetch("http://localhost:3000/categoria");
+    const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
     const categorias = await responseCategorias.json();
   
     createTableCourse(cursos, categorias)
@@ -60,9 +60,22 @@ function closeModal() {
   });
 
   async function deletarCursoById(id) {
-    console.log(id)
+   
     try {
-      const response = await fetch(`http://localhost:3000/cursos/delete/${id}`, { method: 'DELETE' ,
+      const responseInscricaao = await fetch(`http://18.231.150.50:3000/inscrever/delete/${id}`, { method: 'DELETE' ,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+      });
+      if (!responseInscricaao.ok) {
+        const errorResponse = await responseInscricaao.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+        window.alert(errorMessage);
+      }
+
+    
+      const response = await fetch(`http://18.231.150.50:3000/cursos/delete/${id}`, { method: 'DELETE' ,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -86,7 +99,7 @@ async function alterar(categoriaId){
 
 async function logout() {
   try {
-    const response = await fetch("http://localhost:3000/users/logout");
+    const response = await fetch("http://18.231.150.50:3000/users/logout");
     if (response.ok) {
       // Redirect the user to the login page or any other page
       window.location.href = '/login';

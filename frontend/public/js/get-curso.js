@@ -13,10 +13,10 @@ let idCurso = read_cookie("cursoid"); //pegando o cookie
 consultaOneCurso(idCurso);
 
 async function consultaOneCurso(id) {
-  const responseCurso = await fetch(`http://localhost:3000/cursos/page/${id}`);
+  const responseCurso = await fetch(`http://18.231.150.50:3000/cursos/page/${id}`);
   const curso = await responseCurso.json();
 
-  const responseCategorias = await fetch("http://localhost:3000/categoria");
+  const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
   const categorias = await responseCategorias.json();
 
   // Encontra a categoria correspondente pelo ID
@@ -85,7 +85,7 @@ async function inscreverUsuarioNoCurso() {
   console.log(userId)
   
   // Envie uma solicitação POST para criar a relação UserCurso
-  const response = await fetch("http://localhost:3000/inscrever/user-curso", {
+  const response = await fetch("http://18.231.150.50:3000/inscrever/user-curso", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -124,7 +124,7 @@ async function inscreverUsuarioNoCurso() {
 
 async function atualizarNumInscritosCurso(id, cursoDto) {
   try {
-    const response = await fetch(`http://localhost:3000/cursos/updateQuantInscritos/${id}`, { method: 'PUT',
+    const response = await fetch(`http://18.231.150.50:3000/cursos/updateQuantInscritos/${id}`, { method: 'PUT',
     headers: {
      'Content-Type': 'application/json'
      },
@@ -141,7 +141,7 @@ async function atualizarNumInscritosCurso(id, cursoDto) {
 }
 
 async function findCursoById(id) {
-  const cursoResponse= await fetch(`http://localhost:3000/cursos/page/${id}`);
+  const cursoResponse= await fetch(`http://18.231.150.50:3000/cursos/page/${id}`);
   const curso = await cursoResponse.json();
   console.log("curso")
   return curso;

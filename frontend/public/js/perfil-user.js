@@ -28,7 +28,7 @@ function previewImage(event) {
       formData.append('image', file, fileName); // Adiciona o arquivo ao FormData com o nome original
 
       // Faz a requisição para enviar o arquivo para o servidor
-      fetch('http://localhost:3000/users/upload', {
+      fetch('http://18.231.150.50:3000/users/upload', {
         method: 'POST',
         body: formData
       })
@@ -49,7 +49,7 @@ const userId = sessionStorage.getItem('id');
 consultaUser(userId);
 
 async function consultaUser(id) {
-  const response = await fetch(`http://localhost:3000/users/${id}`); 
+  const response = await fetch(`http://18.231.150.50:3000/users/${id}`); 
   const user = await response.json();
 
   preencheTelaUser(user);
@@ -185,7 +185,7 @@ function atualizarDados(event) {
     newPassword
   };
   console.log(dadosAtualizados)
-  fetch(`http://localhost:3000/users/update/${userId}`, {
+  fetch(`http://18.231.150.50:3000/users/update/${userId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ const closeModalButton = document.getElementsByClassName('close')[0];
 
 let nomedaImagem;
 
-fetch('http://localhost:3000/categoria')
+fetch('http://18.231.150.50:3000/categoria')
   .then(response => response.json())
   .then(data => {
     // Obtém o elemento select do HTML
@@ -62,7 +62,7 @@ fetch('http://localhost:3000/categoria')
       formData.append('image', file, fileName); // Adiciona o arquivo ao FormData com o nome original
 
       // Faz a requisição para enviar o arquivo para o servidor
-      fetch('http://localhost:3000/cursos/upload', {
+      fetch('http://18.231.150.50:3000/cursos/upload', {
         method: 'POST',
         body: formData
       })
@@ -103,7 +103,7 @@ function submitForm(event) {
     
 
 async function sendToAPI(dto){
-    const respostaAPI = await fetch('http://localhost:3000/cursos/create', {
+    const respostaAPI = await fetch('http://18.231.150.50:3000/cursos/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function submitFormCategoria(event) {
 
 async function createCategoria(categoriaDto) {
     try {
-      const response = await fetch('http://localhost:3000/categoria/create', {
+      const response = await fetch('http://18.231.150.50:3000/categoria/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
