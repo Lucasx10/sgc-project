@@ -2,9 +2,11 @@ import express from "express";
 import { curso } from "../models/index.js";
 import { CursoController } from "../controller/curso.controller.js";
 import { body, validationResult } from "express-validator";
+import multer from "multer";
+
 const router = express.Router();
-//Para manipulação da imagem
-//const multer = require('multer');
+
+
 const cursoController = new CursoController(curso);
 
 router.get("/", async (req, res) => {
@@ -24,18 +26,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    // const storage = multer.diskStorage({
-    //   destination: '/home/lucas_anderson/Documentos/Curso-CC/Banco de Dados II/sgc-project/frontend/public/images/cards', // Pasta de destino para salvar as imagens
-    //   filename: (req, file, cb) => {
-    //     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    //     cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop());
-    //   }
-    // });
-
-    // const imageName = req.file.filename;
-
     
-    //const upload = multer({ storage });
     //se os dados forem válidos, o sistema executará aqui
     const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
     await cursoController.adicionar({
@@ -75,6 +66,32 @@ router.put('/update/:id', async (req, res) => {
   const { name, image, description,ch, quantInscritos, date_start,categoriaId } = req.body;
   await cursoController.updateCurso(id,{name, image, description,ch,quantInscritos, date_start,categoriaId });
   res.send(`Curso com ID ${id} atualizado com sucesso`);
+});
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'frontend/public/images/cards');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Usa o nome original do arquivo
+  }
+});
+
+const upload = multer({ storage: storage });
+
+router.post('/upload', upload.single('image'), (req, res) => {
+  // Verifica se um arquivo foi recebido
+  if (!req.file) {
+    return res.status(400).json({ error: 'Nenhuma imagem foi enviada' });
+  }
+
+  // A imagem foi recebida e salva na pasta de destino
+  const fileName = req.file.originalname;
+
+  // Faça o processamento adicional necessário, como salvar o nome do arquivo no banco de dados, redimensionar a imagem, etc.
+
+  // Retorna uma resposta de sucesso
+  res.status(200).json({ message: 'Imagem enviada com sucesso' });
 });
 
 export default router;
