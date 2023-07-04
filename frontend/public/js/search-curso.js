@@ -23,8 +23,8 @@ function createTableCourse(cursos, categorias) {
             <td style="text-align: center;">${curso.quantInscritos}</td>
             <td style="text-align: center;">${categoria.name}</td>
             <td>
-            <i style="color: green"  onClick="alterar(${curso.id})"  class="fa-solid fa-pen-to-square" style="padding-left: 15px"></i>
-            <i style="color: red" onClick="confirmarExclusao(${curso.id})" class="delete-category fa-solid fa-trash-can"></i>
+            <i style="color: green"  onClick="alterar(${curso.id})"  class="fa-solid fa-pen-to-square" data-bs-toggle="modal" style="padding-left: 15px" data-bs-target="#exampleModal"></i>
+            <i style="color: red" onClick="confirmarExclusao(${curso.id})" class="delete-category fa-solid fa-trash-can" data-bs-toggle="modal" data-bs-target="#confirma-exclusao"></i>
             </td>
         </tr>
       `
@@ -40,6 +40,7 @@ function openModalComIdExcluir(modalId, id) {
     excluir.innerHTML = ""
     const modal = document.getElementById(modalId);
     const htmlModal = `
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
     <button type="button" onClick=deletarCursoById(${id}) class="btn btn-danger">Excluir</button>
     `
     excluir.innerHTML = excluir.innerHTML + htmlModal;
@@ -61,11 +62,18 @@ function closeModal() {
   async function deletarCursoById(id) {
     console.log(id)
     try {
-      const response = await fetch(`http://18.231.150.50:3000/cursos/delete/${id}`, { method: 'DELETE' });
+      const response = await fetch(`http://18.231.150.50:3000/cursos/delete/${id}`, { method: 'DELETE' ,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (response.ok) {
         location.reload()
       } else {
-        console.error('Erro ao deletar item');
+        const errorResponse = await response.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+        window.alert(errorMessage);
       }
     } catch (error) {
       console.error('Erro ao fazer requisição', error);

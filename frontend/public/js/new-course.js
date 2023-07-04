@@ -45,7 +45,7 @@ fetch('http://18.231.150.50:3000/categoria')
       
       reader.onload = function(e) {
         preview.src = e.target.result;
-       preview.classList += "w-25";
+      //  preview.classList += "w-25";
       };
       
       reader.readAsDataURL(input.files[0]);
@@ -106,16 +106,18 @@ async function sendToAPI(dto){
     const respostaAPI = await fetch('http://18.231.150.50:3000/cursos/create', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(dto)
     })
-    .then(response =>{ 
-      response.json();})
-    .catch(error => {
-      console.error('Erro:', error);
-      
-    });
+    if (respostaAPI.ok) {
+      window.location.href = '/cursos-management';
+    } else {
+      const errorResponse = await respostaAPI.json(); // Captura a resposta como um objeto JSON
+      const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+      window.alert(errorMessage);
+    }
 }
 
 

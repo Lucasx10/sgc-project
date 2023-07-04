@@ -62,6 +62,18 @@ body {
 
 /*BOTÕES*/
 
+.submit-button-real {
+  background: #6c63ff;
+  border-color: #6c63ff;
+  color: #fff;
+}
+
+.submit-button-real:hover {
+  background: #493cf9;
+  border-color: #493cf9;
+  color: #fff;
+}
+
 .submit-button-active {
   background: #6c63ff;
   border-color: #6c63ff;
@@ -116,7 +128,7 @@ body {
   height: flex;
   padding-left: 4rem;
   padding-right: 4rem;
-  background-color: rgb(201, 209, 222);
+  background-color: white;
 }
 
 .new-course {
@@ -127,7 +139,7 @@ body {
   height: flex;
   padding-left: 4rem;
   padding-right: 4rem;
-  background-color: #c9d1de;
+  background-color: white;
 
 }
 
@@ -227,8 +239,7 @@ body {
   width: 80%;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .card-content {
@@ -258,10 +269,15 @@ body {
 .mytable{
   width: 60%;
   margin: 0 auto;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .color-text-button {
   color: white;
+}
+
+.imagem-bugada-do-lucas-anderson {
+  width: 20rem;
+  border-radius: 5px;
+  object-fit: cover;
 }

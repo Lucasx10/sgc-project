@@ -30,6 +30,7 @@ function openModalComIdExcluir(modalId, id) {
     excluir.innerHTML = ""
     const modal = document.getElementById(modalId);
     const htmlModal = `
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
     <button type="button" onClick=deletarCategoria(${id}) class="btn btn-danger">Excluir</button>
     `
     excluir.innerHTML = excluir.innerHTML + htmlModal;
@@ -81,8 +82,8 @@ function createTable(categorias) {
         <tr>
             <td>${categoria.name}</td>
             <td>
-            <i style="color: green"  onClick="alterar(${categoria.id})"  class="fa-solid fa-pen-to-square" style="padding-left: 15px"></i>
-            <i style="color: red" onClick="confirmarExclusao(${categoria.id})" class="delete-category fa-solid fa-trash-can"></i>
+            <i style="color: green"  onClick="alterar(${categoria.id})"  class="fa-solid fa-pen-to-square" style="padding-left: 15px" data-bs-toggle="modal" data-bs-target="#editar"></i>
+            <i style="color: red" onClick="confirmarExclusao(${categoria.id})" class="delete-category fa-solid fa-trash-can" data-bs-toggle="modal" data-bs-target="#confirma-exclusao"></i>
             </td>
         </tr>
       `
@@ -118,7 +119,8 @@ async function atualizarCategoria(id, categoriaDto) {
      try {
        const response = await fetch(`http://18.231.150.50:3000/categoria/update/${id}`, { method: 'PUT',
        headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(categoriaDto)},
        );
@@ -126,7 +128,10 @@ async function atualizarCategoria(id, categoriaDto) {
          modal.style.display = 'none';
          location.reload()
        } else {
-         console.error('Erro ao atualizar item');
+        const errorResponse = await response.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+  
+        console.error('Erro ao atualizar item:', errorMessage);
        }
      } catch (error) {
        console.error('Erro ao fazer requisição', error);
@@ -135,11 +140,16 @@ async function atualizarCategoria(id, categoriaDto) {
 
 async function deletarCategoria(id) {
      try {
-       const response = await fetch(`http://18.231.150.50:3000/categoria/delete/${id}`, { method: 'DELETE' });
+       const response = await fetch(`http://18.231.150.50:3000/categoria/delete/${id}`, { method: 'DELETE',
+       headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        } });
        if (response.ok) {
          location.reload()
        } else {
-         console.error('Erro ao deletar item');
+        const errorResponse = await response.json(); // Captura a resposta como um objeto JSON
+        const errorMessage = errorResponse.error; // Obtém a mensagem de erro
+        console.error(errorMessage);
        }
      } catch (error) {
        console.error('Erro ao fazer requisição', error);

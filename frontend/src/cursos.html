@@ -59,16 +59,30 @@
 
             </tbody>
         </table>
-        <button type="button" class="btn btn-success mt-2" style="width: 15%; margin: auto;">
+        <button type="button" class="submit-button-real btn btn-success mt-2" style="width: 15%; margin: auto;">
           <a href="/novo-curso" style="text-decoration: none;" class="color-text-button">Adicionar Curso</a></button>
         <div class="container-cursos" id="cursos"></div>
       </div>
+      <!-- Modal Deletar Curso -->
+      <div 
+        id="confirma-exclusao" 
+        class="modal fade"
+        aria-hidden="true"
+        tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h4>Tem certeza que deseja excluir este curso?</h4>
+            </div>
+      
+            <div class="modal-footer" id="excluir">
 
-      <div id="confirma-exclusao" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h4> Tem certeza que deseja excluir este curso?</h4>
-          <div id="excluir"> </div>
+            </div>
+          </div>
         </div>
       </div>
 

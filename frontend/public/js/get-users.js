@@ -4,8 +4,8 @@ const divCursos = document.querySelector("#mostra-users");
 function createCursoButton(cursos) {
   
   var button = document.createElement("button");
-  button.textContent = "Fechar Curso:  " + cursos.name;
-  button.classList.add("btn", "btn-danger", "me-1"); // Adiciona as classes do Bootstrap
+  button.textContent = "Emitir certificados:  " + cursos.name;
+  button.classList.add("btn", "btn-info", "me-1"); // Adiciona as classes do Bootstrap
   button.addEventListener("click", function () {
     emitirCertificados(cursos);
   });
@@ -59,7 +59,7 @@ async function consultaUsers() {
 function preencheTela(users) {
   users.forEach((user) => {
     const novoCursoHTML = `
-    <div class="card-curso h-25 mx-2 mt-5">
+    <div class="card-curso mx-2 mt-5">
         <div class="card-content">
         <h2 class="card-title">${user.name}</h2>
         <p>
