@@ -124,7 +124,7 @@ async function inscreverUsuarioNoCurso() {
 
 async function atualizarNumInscritosCurso(id, cursoDto) {
   try {
-    const response = await fetch(`http://localhost:3000/cursos/update/${id}`, { method: 'PUT',
+    const response = await fetch(`http://localhost:3000/cursos/updateQuantInscritos/${id}`, { method: 'PUT',
     headers: {
      'Content-Type': 'application/json'
      },

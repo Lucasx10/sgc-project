@@ -83,6 +83,13 @@ router.put('/update/:id', AuthMiddleware, async (req, res) => {
   }
 });
 
+router.put('/updateQuantInscritos/:id', async (req, res) => {
+  const id = req.params.id;
+  const { quantInscritos } = req.body;
+  await cursoController.updateCurso(id,{quantInscritos});
+  res.send(`Curso com ID ${id} atualizado com sucesso`);
+});
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'frontend/public/images/cards');

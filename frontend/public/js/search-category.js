@@ -156,6 +156,20 @@ async function deletarCategoria(id) {
      }
 }
 
+async function logout() {
+  try {
+    const response = await fetch("http://localhost:3000/users/logout");
+    if (response.ok) {
+      // Redirect the user to the login page or any other page
+      window.location.href = '/login';
+    } else {
+      console.error('Error during logout');
+    }
+  } catch (error) {
+    console.error('Error during logout', error);
+  }
+}
+
 
 async function findCategoriaById(id) {
     const categoriaObject = await fetch(`http://localhost:3000/categoria/${id}`);
