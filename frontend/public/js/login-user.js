@@ -15,7 +15,7 @@ function submitLoginForm(event) {
 }
 
 async function sendLoginRequest(dto) {
-    const response = await fetch('http://18.231.150.50:3000/users/login', {
+    const response = await fetch('http://localhost:3000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ async function sendLoginRequest(dto) {
         const { token } = await response.json();
   
         // Armazenar o token no Local Storage
-        localStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
 
         // Decodificar o token manualmente para obter o ID do usuário
         const tokenParts = token.split('.');
@@ -40,8 +40,8 @@ async function sendLoginRequest(dto) {
         const { id } = JSON.parse(payload);
 
         // Armazenar o id no Local Storage
-        localStorage.setItem('id', id);
-        console.log(localStorage)
+        sessionStorage.setItem('id', id);
+        console.log(sessionStorage)
         // Chamar a função para obter os dados do usuário
         getUserData(id);
     } else {
@@ -52,9 +52,9 @@ async function sendLoginRequest(dto) {
 }
 
 async function getUserData(id) {
-    const token = localStorage.getItem('token'); // Obtenha o token armazenado no Local Storage
+    const token = sessionStorage.getItem('token'); // Obtenha o token armazenado no Local Storage
   
-    const response = await fetch(`http://18.231.150.50:3000/users/login/${id}`, {
+    const response = await fetch(`http://localhost:3000/users/login/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}` // Inclua o token no cabeçalho da requisição
       }
@@ -63,7 +63,7 @@ async function getUserData(id) {
     if (response.ok) {
       // Os dados do usuário estão na resposta
       const userData = await response.json();
-      localStorage.setItem('nameUser', userData.name)
+      sessionStorage.setItem('nameUser', userData.name)
       console.log(userData);
       
       // Use os dados do usuário para preencher a página ou executar outras ações necessárias

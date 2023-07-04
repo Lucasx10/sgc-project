@@ -3,7 +3,7 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const progressBar = document.querySelector("#progress-bar");
 const progressText = document.querySelector("#progress-text");
 // Obtenha o ID do usuário armazenado no Local Storage
-let userId = localStorage.getItem('id');
+let userId = sessionStorage.getItem('id');
 
 // Pega id enviado pelo backend por cookie
 // Função geral para ler qualquer cookie passando algum nome
@@ -48,7 +48,7 @@ checkboxes.forEach(function(checkbox) {
     const cursoId = idCurso; // ID do curso obtido anteriormente pelo cookie
   
     // Envie uma solicitação POST para atualizar a carga horária do curso
-    const response = await fetch("http://18.231.150.50:3000/inscrever/cargaHoraria", {
+    const response = await fetch("http://localhost:3000/inscrever/cargaHoraria", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,10 +76,10 @@ let idCurso = read_cookie("cursoid"); //pegando o cookie
 consultaOneCurso(idCurso);
 
 async function consultaOneCurso(cursoId)  {
-    const responseCurso = await fetch(`http://18.231.150.50:3000/cursos/page/${cursoId}`);
+    const responseCurso = await fetch(`http://localhost:3000/cursos/page/${cursoId}`);
     const curso = await responseCurso.json();
     // Verifica se a coluna IsCertificateReady é true para a inscrição desse usuário nesse curso
-    const responseInscricao = await fetch(`http://18.231.150.50:3000/inscrever/isCertificateReady/${userId}/${cursoId}`);
+    const responseInscricao = await fetch(`http://localhost:3000/inscrever/isCertificateReady/${userId}/${cursoId}`);
     const inscricao = await responseInscricao.json();
 
     const IsCertificateReady = inscricao
@@ -94,7 +94,7 @@ async function consultaOneCurso(cursoId)  {
 }
   
   function emitirCertificado(curso) {
-    const usuario = localStorage.getItem('nameUser'); // Obtenha as informações do usuário atual
+    const usuario = sessionStorage.getItem('nameUser'); // Obtenha as informações do usuário atual
   
     const certificado = {
       nome: usuario,

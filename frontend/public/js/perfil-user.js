@@ -28,7 +28,7 @@ function previewImage(event) {
       formData.append('image', file, fileName); // Adiciona o arquivo ao FormData com o nome original
 
       // Faz a requisição para enviar o arquivo para o servidor
-      fetch('http://18.231.150.50:3000/users/upload', {
+      fetch('http://localhost:3000/users/upload', {
         method: 'POST',
         body: formData
       })
@@ -45,11 +45,11 @@ function previewImage(event) {
     }
 }
 
-const userId = localStorage.getItem('id'); 
+const userId = sessionStorage.getItem('id'); 
 consultaUser(userId);
 
 async function consultaUser(id) {
-  const response = await fetch(`http://18.231.150.50:3000/users/${id}`); 
+  const response = await fetch(`http://localhost:3000/users/${id}`); 
   const user = await response.json();
 
   preencheTelaUser(user);
@@ -66,7 +66,7 @@ function preencheTelaUser(user) {
                 <h2 class="mt-2 text-center fw-bold mb-3">Configurações da Conta</h2>
                 <form action="" class="ativo row" method="post" id="entrar" enctype="multipart/form-data">
                   <div class="center-image mb-3 text-center">
-                  <img class="imagem-bugada-do-lucas-anderson" id="preview" src="${user.image}" alt=""/>
+                  <img class="imagem-bugada-do-lucas-anderson" id="preview" src="../images/usuarios/${user.image}" alt=""/>
                   </div>
                   <div class="form-group col-6">
                     <div>
@@ -185,7 +185,7 @@ function atualizarDados(event) {
     newPassword
   };
   console.log(dadosAtualizados)
-  fetch(`http://18.231.150.50:3000/users/update/${userId}`, {
+  fetch(`http://localhost:3000/users/update/${userId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

@@ -2,20 +2,20 @@ const divCursos = document.querySelector("#cursos");
 const cursoIns = document.querySelector("#cursos-inscrito");
 
 async function consultaCursos() {
-  const response = await fetch("http://18.231.150.50:3000/cursos");
+  const response = await fetch("http://localhost:3000/cursos");
   const cursos = await response.json();
 
-  const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
+  const responseCategorias = await fetch("http://localhost:3000/categoria");
   const categorias = await responseCategorias.json();
 
   preencheTela(cursos, categorias);
 }
 
 async function consultaCursosInscrito(userId) {
-  const response = await fetch(`http://18.231.150.50:3000/inscrever/${userId}/cursos`);
+  const response = await fetch(`http://localhost:3000/inscrever/${userId}/cursos`);
   const userCursos  = await response.json();
 
-  const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
+  const responseCategorias = await fetch("http://localhost:3000/categoria");
   const categorias = await responseCategorias.json();
 
   preencheTelaInscrito(userCursos, categorias);
@@ -91,14 +91,14 @@ function preencheTelaInscrito(cursos, categorias) {
 
 
   // Verificar se há um token válido no Local Storage
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   if (token) {
     // Exibir a parte de perfil e o link de logout
     document.getElementById('perfil-link').style.display = 'block';
     document.getElementById('logout-link').style.display = 'block';
     // Obtenha o ID do usuário armazenado no Local Storage
-    const userId = localStorage.getItem('id'); 
+    const userId = sessionStorage.getItem('id'); 
     consultaCursosInscrito(userId);
     document.getElementById('exibir-cursos-inscrito').style.display = 'block';
     // Ocultar o link de login
@@ -115,7 +115,7 @@ function preencheTelaInscrito(cursos, categorias) {
 // Função para fazer logout
 function logout() {
   // Remover o token do Local Storage
-  localStorage.removeItem('token');
-  localStorage.removeItem('id');
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('id');
 
 }
