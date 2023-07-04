@@ -67,7 +67,7 @@ const submitBtnCategoria = document.getElementById('criar-categoria')
 const submitBtnUpdateCategoria = document.getElementById('alterar-categoria')
 
 async function consultaCategorias() {
-  const responseCategorias = await fetch("http://localhost:3000/categoria");
+  const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
   const categorias = await responseCategorias.json();
 
   createTable (categorias);
@@ -93,7 +93,7 @@ function createTable(categorias) {
 
 async function createCategoria(categoriaDto) {
     try {
-        const response = await fetch('http://localhost:3000/categoria/create', {
+        const response = await fetch('http://18.231.150.50:3000/categoria/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ async function createCategoria(categoriaDto) {
 
 async function atualizarCategoria(id, categoriaDto) {
      try {
-       const response = await fetch(`http://localhost:3000/categoria/update/${id}`, { method: 'PUT',
+       const response = await fetch(`http://18.231.150.50:3000/categoria/update/${id}`, { method: 'PUT',
        headers: {
         'Content-Type': 'application/json'
         },
@@ -135,7 +135,7 @@ async function atualizarCategoria(id, categoriaDto) {
 
 async function deletarCategoria(id) {
      try {
-       const response = await fetch(`http://localhost:3000/categoria/delete/${id}`, { method: 'DELETE' });
+       const response = await fetch(`http://18.231.150.50:3000/categoria/delete/${id}`, { method: 'DELETE' });
        if (response.ok) {
          location.reload()
        } else {
@@ -148,7 +148,7 @@ async function deletarCategoria(id) {
 
 
 async function findCategoriaById(id) {
-    const categoriaObject = await fetch(`http://localhost:3000/categoria/${id}`);
+    const categoriaObject = await fetch(`http://18.231.150.50:3000/categoria/${id}`);
     const categoria = await categoriaObject.json();
     return categoria;
 }

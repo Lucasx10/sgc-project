@@ -3,10 +3,10 @@ const closeModalButton = document.getElementsByClassName('close')[0];
 const excluir = document.getElementById('excluir');
 
 async function consultaCursos() {
-    const responseCursos = await fetch("http://localhost:3000/cursos");
+    const responseCursos = await fetch("http://18.231.150.50:3000/cursos");
     const cursos = await responseCursos.json();
 
-    const responseCategorias = await fetch("http://localhost:3000/categoria");
+    const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
     const categorias = await responseCategorias.json();
   
     createTableCourse(cursos, categorias)
@@ -61,7 +61,7 @@ function closeModal() {
   async function deletarCursoById(id) {
     console.log(id)
     try {
-      const response = await fetch(`http://localhost:3000/cursos/delete/${id}`, { method: 'DELETE' });
+      const response = await fetch(`http://18.231.150.50:3000/cursos/delete/${id}`, { method: 'DELETE' });
       if (response.ok) {
         location.reload()
       } else {

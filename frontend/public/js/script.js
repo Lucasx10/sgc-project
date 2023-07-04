@@ -109,7 +109,7 @@ function submitForm(event) {
 }
 
 async function sendToAPI(dto){
-    const respostaAPI = await fetch('http://localhost:3000/users/create', {
+    const respostaAPI = await fetch('http://18.231.150.50:3000/users/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ async function sendToAPI(dto){
 }
 
 async function consultaUser(id) {
-    const response = await fetch(`http://localhost:3000/cursos/page/${id}`);
+    const response = await fetch(`http://18.231.150.50:3000/cursos/page/${id}`);
     const curso = await response.json();
     preencheTelaCurso(curso);
     console.log(curso);
