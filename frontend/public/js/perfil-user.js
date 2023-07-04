@@ -9,7 +9,7 @@ function previewImage(event) {
       
       reader.onload = function(e) {
         preview.src = e.target.result;
-        preview.classList += "w-25";
+        // preview.classList += "w-25";
         
       };
       
@@ -38,7 +38,7 @@ function preencheTelaUser(user) {
                 <h2 class="mt-2 text-center fw-bold mb-3">Configurações da Conta</h2>
                 <form action="" class="ativo row" method="post" id="entrar" enctype="multipart/form-data">
                   <div class="center-image mb-3 text-center">
-                  <img id="preview" src="${user.image}" alt=""/>
+                  <img class="imagem-bugada-do-lucas-anderson" id="preview" src="${user.image}" alt=""/>
                   </div>
                   <div class="form-group col-6">
                     <div>

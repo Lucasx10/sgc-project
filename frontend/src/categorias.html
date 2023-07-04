@@ -57,53 +57,107 @@
 
             </tbody>
         </table>
-        <button type="button" class="btn btn-success mt-2" id="add-category" style="width: 15%; margin: auto;">Adicionar Categoria</button>
+        <!-- Botão Modal Adicionar Categoria -->
+        <button 
+          type="button" 
+          class="submit-button-real btn btn-success mt-2" 
+          id="add-category" 
+          style="width: 15%; margin: auto;"
+          data-bs-toggle="modal" 
+          data-bs-target="#modal">
+          Adicionar Categoria
+        </button>
         <div class="container-cursos" id="cursos"></div>
       </div>
+      <!-- Modal Adicionar Categoria -->
+      <div 
+        id="modal" 
+        class="modal fade"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
 
-      <div id="modal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Adicionar Categoria</h2>
-          <form>
-            <div class="name-field ct-input">
-              <label for="name">Nome da Categoria</label>
-              <input
-                type="name"
-                name="name"
-                id="nameCategoria"
-                placeholder="Ciência da Computação"
-              />
+              <h2>Adicionar Categoria</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button type="submit" class="submit" id="criar-categoria" class="close">Criar Categoria</button>
-          </form>
+
+            <div class="modal-body">
+              <div class="">
+                <label for="name">Nome da Categoria</label>
+                <input
+                  class="form-control mt-1"
+                  type="name"
+                  name="name"
+                  id="nameCategoria"
+                  placeholder="Ciência da Computação"
+                />
+              </div>
+              <div class="mt-2 right modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="criar-categoria" class="btn btn-success">
+                  Criar Categoria
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Modal Deletar Categoria-->
+      <div 
+        id="confirma-exclusao" 
+        class="modal fade"
+        aria-hidden="true"
+        tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h4>Tem certeza que deseja excluir esta categoria?</h4>
+            </div>
+            <div class="modal-footer" id="excluir"> 
+
+            </div>
+          </div>
         </div>
       </div>
 
-      <div id="confirma-exclusao" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h4> Tem certeza que deseja excluir esta categoria?</h4>
-          <div id="excluir"> </div>
+
+      <div 
+        id="editar" 
+        class="modal"
+        aria-hidden="true"
+        tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close"></span> <!--Arrumar isso -->
+              <h4 class="modal-title">Alterar Categoria</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <label 
+                  for="name">
+                  Nome da Categoria
+                </label>
+                <input
+                  type="text"
+                  name="alterandoName"
+                  id="alterandoName"
+                  class="form-control"/>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success" id="alterar-categoria" class="close">Alterar</button>
+          </div>
         </div>
       </div>
-
-      <div id="editar" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h4> Alterando categoria</h4>
-          <form>
-            <div class="name-field ct-input">
-              <label for="name">Nome da Categoria</label>
-              <input
-                type="text"
-                name="alterandoName"
-                id="alterandoName"
-              />
-            </div>
-            <button type="submit" class="submit" id="alterar-categoria" class="close">Alterar</button>
-          </form>
-        </div>
       </div>
     </main>
 

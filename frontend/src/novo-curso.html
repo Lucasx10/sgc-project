@@ -44,9 +44,9 @@
       <section class="login">
         <div class="new-course container mt-3 d-flex align-items-center">
           <form action="#" class="ativo row" method="post" id="entrar" enctype="multipart/form-data">
-            <h2 class="mt-1 text-center fw-bold mb-3">Cadastrar Curso</h2>
+            <h2 class="mt-1 text-center fw-bold mb-3">Adicionar Curso</h2>
             <div class="center-image mb-3 text-center">
-              <img id="preview" src="#" alt="" />
+              <img class="imagem-bugada-do-lucas-anderson" id="preview" src="#" alt="" />
             </div>
             <div class="">
               <div class="row">
@@ -84,7 +84,7 @@
                   <label class="mb-1" for="selectCategorias">Categoria</label>
                   <select class="form-control" id="selectCategorias"></select>
                   <!-- Botão Modal -->
-                   <button type="button" id="add-category" class="submit-button-active btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modal">
+                   <button type="button" id="add-category" class="submit-button-real btn btn-primary mt-2 form-control-plaintext" data-bs-toggle="modal" data-bs-target="#modal">
                     Adicionar Categoria
                   </button>
                   <!-- Modal -->
@@ -92,7 +92,7 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <span class="close">&times;</span>
+                          <span class="close">&times;</span> <!--Arrumar isso -->
                           <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Categoria</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -108,7 +108,7 @@
                               placeholder="Ciência da Computação"/>
                           </div>
                           <div class="mt-2 right">
-                            <button type="submit" class="btn btn-outline-success" id="criar-categoria" class="close">Criar Categoria</button>
+                            <button type="submit" class="btn btn-success" id="criar-categoria" class="close">Criar Categoria</button>
                           </div>
                         </div>
                       </div>
