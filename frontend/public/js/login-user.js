@@ -15,7 +15,7 @@ function submitLoginForm(event) {
 }
 
 async function sendLoginRequest(dto) {
-    const response = await fetch('http://18.231.150.50:3000/users/login', {
+    const response = await fetch('http://localhost:3000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ async function sendLoginRequest(dto) {
 async function getUserData(id) {
     const token = sessionStorage.getItem('token'); // Obtenha o token armazenado no Local Storage
   
-    const response = await fetch(`http://18.231.150.50:3000/users/login/${id}`, {
+    const response = await fetch(`http://localhost:3000/users/login/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}` // Inclua o token no cabeçalho da requisição
       }

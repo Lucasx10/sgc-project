@@ -2,20 +2,20 @@ const divCursos = document.querySelector("#cursos");
 const cursoIns = document.querySelector("#cursos-inscrito");
 
 async function consultaCursos() {
-  const response = await fetch("http://18.231.150.50:3000/cursos");
+  const response = await fetch("http://localhost:3000/cursos");
   const cursos = await response.json();
 
-  const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
+  const responseCategorias = await fetch("http://localhost:3000/categoria");
   const categorias = await responseCategorias.json();
 
   preencheTela(cursos, categorias);
 }
 
 async function consultaCursosInscrito(userId) {
-  const response = await fetch(`http://18.231.150.50:3000/inscrever/${userId}/cursos`);
+  const response = await fetch(`http://localhost:3000/inscrever/${userId}/cursos`);
   const userCursos  = await response.json();
 
-  const responseCategorias = await fetch("http://18.231.150.50:3000/categoria");
+  const responseCategorias = await fetch("http://localhost:3000/categoria");
   const categorias = await responseCategorias.json();
 
   preencheTelaInscrito(userCursos, categorias);

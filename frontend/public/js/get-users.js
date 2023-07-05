@@ -25,7 +25,7 @@ function addCursoButtons(cursoIds) {
 
 // Função para carregar os IDs dos cursos e adicionar os botões na página
 async function loadCursoButtons() {
-  const response = await fetch("http://18.231.150.50:3000/cursos");
+  const response = await fetch("http://localhost:3000/cursos");
   const cursos = await response.json();
 
   var cursoIds = cursos.map(curso => {
@@ -39,7 +39,7 @@ async function loadCursoButtons() {
 }
 
 async function consultaUsers() {
-  const response = await fetch("http://18.231.150.50:3000/users", {
+  const response = await fetch("http://localhost:3000/users", {
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
@@ -127,7 +127,7 @@ async function ativarDesativarUsuario(id) {
 
 async function atualizarUsuario(id, usuarioDto) {
   try {
-    const response = await fetch(`http://18.231.150.50:3000/users/update/${id}`, { method: 'PUT',
+    const response = await fetch(`http://localhost:3000/users/update/${id}`, { method: 'PUT',
     headers: {
      'Content-Type': 'application/json'
      },
@@ -144,14 +144,14 @@ async function atualizarUsuario(id, usuarioDto) {
 }
 
 async function findUsuarioById(id) {
-  const categoriaObject = await fetch(`http://18.231.150.50:3000/users/${id}`);
+  const categoriaObject = await fetch(`http://localhost:3000/users/${id}`);
   const categoria = await categoriaObject.json();
   return categoria;
 }
 
 async function logout() {
   try {
-    const response = await fetch("http://18.231.150.50:3000/users/logout");
+    const response = await fetch("http://localhost:3000/users/logout");
     if (response.ok) {
       // Redirect the user to the login page or any other page
       window.location.href = '/login';
@@ -167,7 +167,7 @@ async function emitirCertificados(cursos) {
   const cursoId = cursos.id; // ID do curso a ser fechado
 
   // Obtenha todos os usuários inscritos no curso
-  const response = await fetch(`http://18.231.150.50:3000/inscrever/fecharCurso/${cursoId}`);
+  const response = await fetch(`http://localhost:3000/inscrever/fecharCurso/${cursoId}`);
   const usuariosCertificados = await response.json();
 
   //emite certificado para os usuarios que tem a porcentagem de carga horaria > 90
